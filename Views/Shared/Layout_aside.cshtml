@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewBag.Title = "Layout_aside";
+}
+
+<nav class="pcoded-navbar">
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="pcoded-navigatio-lavel">Principal</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu active pcoded-trigger">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Ventas</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="active">
+                        @Html.ActionLink("Carrito", "Index", "Home", new {@class = "pcoded-mtext" })
+                        
+                    </li>
+                    <li class="">
+                        <a href="dashboard-crm.htm">
+                            <span class="pcoded-mtext">Dovolución</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="menu-header-fixed.htm">
+                            <span class="pcoded-mtext">Ver ventas</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                    <span class="pcoded-mtext">Compras</span>
+                    <span class="pcoded-badge label label-warning">Nuevo</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-mtext">Registrar compra</span>
+                        </a>
+
+                    </li>
+                    <li class=" pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-mtext">Devolución</span>
+                        </a>
+
+                    </li>
+                    <li class=" ">
+                        <a href="menu-bottom.htm">
+                            <span class="pcoded-mtext">Ver compras</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="">
+                <a href="navbar-light.htm">
+                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                    <span class="pcoded-mtext">Proveedor</span>
+                </a>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
+                    <span class="pcoded-mtext">Inventario</span>
+                    <span class="pcoded-badge label label-danger">300+</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="widget-statistic.htm">
+                            <span class="pcoded-mtext">Agregar nuevo producto</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="widget-data.htm">
+                            <span class="pcoded-mtext">Ver Inventario</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+        </ul>
+        <div class="pcoded-navigatio-lavel">Otras funciones</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-box"></i></span>
+                    <span class="pcoded-mtext">Agregar propiedades</span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    <li class=" ">
+                        <a href="breadcrumb.htm">
+                            <span class="pcoded-mtext">Laboratorio</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="button.htm">
+                            <span class="pcoded-mtext">Presentación</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="box-shadow.htm">
+                            <span class="pcoded-mtext">Acción Farmacólogica</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="accordion.htm">
+                            <span class="pcoded-mtext">Unidad de Medida</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-gitlab"></i></span>
+                    <span class="pcoded-mtext">Reportes</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="draggable.htm">
+                            <span class="pcoded-mtext">Consolidado</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="bs-grid.htm">
+                            <span class="pcoded-mtext">Inventario actual</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="light-box.htm">
+                            <span class="pcoded-mtext">productos agotados</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="modal.htm">
+                            <span class="pcoded-mtext">medicamentos controlados</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class=" ">
+                <a href="animation.htm">
+                    <span class="pcoded-micon"><i class="feather icon-aperture rotate-refresh"></i><b>A</b></span>
+                    <span class="pcoded-mtext">Arqueo</span>
+                    <span class="pcoded-badge label label-danger">útil</span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="sticky.htm">
+                    <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
+                    <span class="pcoded-mtext">Billetaje</span>
+
+                </a>
+            </li>
+
+        </ul>
+        <div class="pcoded-navigatio-lavel">Administración</div>
+        <ul class="pcoded-item pcoded-left-item">
+
+            <li class=" ">
+                <a href="form-picker.htm">
+                    <span class="pcoded-micon"><i class="feather icon-edit-1"></i></span>
+                    <span class="pcoded-mtext">Agregar usuario</span>
+                    <span class="pcoded-badge label label-warning">NEW</span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="form-select.htm">
+                    <span class="pcoded-micon"><i class="feather icon-feather"></i></span>
+                    <span class="pcoded-mtext">Ver catálogo de usuarios</span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="form-masking.htm">
+                    <span class="pcoded-micon"><i class="feather icon-shield"></i></span>
+                    <span class="pcoded-mtext">Brindar permisos</span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="form-wizard.htm">
+                    <span class="pcoded-micon"><i class="feather icon-tv"></i></span>
+                    <span class="pcoded-mtext">Agregar nuevo rol</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>

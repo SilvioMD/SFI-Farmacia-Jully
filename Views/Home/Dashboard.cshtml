@@ -1,0 +1,358 @@
+﻿
+<body>
+   
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+           @RenderPage("~/Views/Shared/Layout_header.cshtml")
+            
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <!-- task, page, download counter  start -->
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-yellow update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">$30200</h4>
+                                                                <h6 class="text-white m-b-0">Todas las Compras</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-1" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado: 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-green update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">c$40500</h4>
+                                                                <h6 class="text-white m-b-0">Todas las ventas</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-2" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado: 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-pink update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">10000</h4>
+                                                                <h6 class="text-white m-b-0">Saldo inicial</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-3" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado: 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-lite-green update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">500</h4>
+                                                                <h6 class="text-white m-b-0">Inventario</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-4" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado: 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- task, page, download counter  end -->
+                                            <!--  sale analytics start -->
+                                            <div class="col-xl-9 col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Analisis de ventas </h5>
+                                                        <span class="text-muted">Detalles de ventas en el mes de abril.</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                                                <li><i class="feather icon-trash-2 close-card"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="sales-analytics" style="height: 265px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-12">
+                                                <div class="card user-card2">
+                                                    <div class="card-block text-center">
+                                                        <h6 class="m-b-15">Reporte de inventario</h6>
+                                                        <div class="risk-rate">
+                                                            <span><b>5</b></span>
+                                                        </div>
+                                                        <h6 class="m-b-10 m-t-10">Deatlle</h6>
+                                                        <a href="#!" class="text-c-yellow b-b-warning">cambiar dia</a>
+                                                        <div class="row justify-content-center m-t-10 b-t-default m-l-0 m-r-0">
+                                                            <div class="col m-t-15 b-r-default">
+                                                                <h6 class="text-muted">Nr</h6>
+                                                                <h6>AWS 2455</h6>
+                                                            </div>
+                                                            <div class="col m-t-15">
+                                                                <h6 class="text-muted">Crear</h6>
+                                                                <h6>05 de mayo</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-warning btn-block p-t-15 p-b-15">Descargar Reporte.</button>
+                                                </div>
+                                            </div>
+                                            <!--  sale analytics end -->
+
+                                            <div class="col-xl-8 col-md-12">
+                                                <div class="card table-card">
+                                                    <div class="card-header">
+                                                        <h5>Ventas por mes</h5>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                                                <li><i class="feather icon-trash-2 close-card"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover  table-borderless">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            <div class="chk-option">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label class="check-task">
+                                                                                        <input type="checkbox" value="">
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon feather icon-check txt-default"></i>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            Mes
+                                                                        </th>
+                                                                        <th>Ventas</th>
+                                                                        <th>cambio</th>
+                                                                        <th>Promedio por semana</th>
+                                                                        <th>Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="chk-option">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label class="check-task">
+                                                                                        <input type="checkbox" value="">
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon feather icon-check txt-default"></i>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-inline-block align-middle">
+                                                                                <h6>Abril</h6>
+                                                                                <p class="text-muted m-b-0"></p>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>16,300</td>
+                                                                        <td><canvas id="app-sale1" height="50" width="100"></canvas></td>
+                                                                        <td>$520</td>
+                                                                        <td class="text-c-blue">$15,652</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="chk-option">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label class="check-task">
+                                                                                        <input type="checkbox" value="">
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon feather icon-check txt-default"></i>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-inline-block align-middle">
+                                                                                <h6>Marzo</h6>
+                                                                                <p class="text-muted m-b-0"></p>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>26,421</td>
+                                                                        <td><canvas id="app-sale2" height="50" width="100"></canvas></td>
+                                                                        <td>$350</td>
+                                                                        <td class="text-c-blue">$18,785</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="chk-option">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label class="check-task">
+                                                                                        <input type="checkbox" value="">
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon feather icon-check txt-default"></i>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-inline-block align-middle">
+                                                                                <h6>Febrero</h6>
+                                                                                <p class="text-muted m-b-0"></p>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>8,265</td>
+                                                                        <td><canvas id="app-sale3" height="50" width="100"></canvas></td>
+                                                                        <td>$280</td>
+                                                                        <td class="text-c-blue">$9,652</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="chk-option">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label class="check-task">
+                                                                                        <input type="checkbox" value="">
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon feather icon-check txt-default"></i>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-inline-block align-middle">
+                                                                                <h6>Enero</h6>
+                                                                                <p class="text-muted m-b-0"></p>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>10,652</td>
+                                                                        <td><canvas id="app-sale4" height="50" width="100"></canvas></td>
+                                                                        <td>$250</td>
+                                                                        <td class="text-c-blue">$7,856</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="text-center">
+                                                                <a href="#!" class=" b-b-primary text-primary">Ver más detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-12">
+                                                <div class="card user-activity-card">
+                                                    <div class="card-header">
+                                                        <h5>Actividad de usuarios</h5>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="row m-b-25">
+                                                            <div class="col-auto p-r-0">
+                                                                <div class="u-img">
+                                                                    <img src="..\files\assets\images\breadcrumb-bg.jpg" alt="user image" class="img-radius cover-img">
+                                                                    <img src="..\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius profile-img">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6 class="m-b-5">John Deo</h6>
+                                                                <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
+                                                                <p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>hace 2 min</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-b-25">
+                                                            <div class="col-auto p-r-0">
+                                                                <div class="u-img">
+                                                                    <img src="..\files\assets\images\breadcrumb-bg.jpg" alt="user image" class="img-radius cover-img">
+                                                                    <img src="..\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius profile-img">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6 class="m-b-5">John Deo</h6>
+                                                                <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
+                                                                <p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>hace 2 min</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-b-25">
+                                                            <div class="col-auto p-r-0">
+                                                                <div class="u-img">
+                                                                    <img src="..\files\assets\images\breadcrumb-bg.jpg" alt="user image" class="img-radius cover-img">
+                                                                    <img src="..\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius profile-img">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6 class="m-b-5">John Deo</h6>
+                                                                <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
+                                                                <p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>hace 2 min</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-b-5">
+                                                            <div class="col-auto p-r-0">
+                                                                <div class="u-img">
+                                                                    <img src="..\files\assets\images\breadcrumb-bg.jpg" alt="user image" class="img-radius cover-img">
+                                                                    <img src="..\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius profile-img">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6 class="m-b-5">John Deo</h6>
+                                                                <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
+                                                                <p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>hace 2 min</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-center">
+                                                            <a href="#!" class="b-b-primary text-primary">ver todo el historial</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- footer -->
+                                            @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
