@@ -3,5 +3,384 @@
     ViewBag.Title = "Carrito";
 }
 
-<h2>Carrito</h2>
 
+
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <!-- task, page, download counter  start -->
+                                        <div class="card-body">
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes">
+                                                            <strong>Cajero: </strong> nombres y apellido del usuario<br />
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>No. Factura:  </strong><br /></label><br />
+                                                        <h3 class="form-label"><strong>        00001</strong></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Tipo de pago</strong></label>
+                                                        <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                            <option value="">Efectivo</option>
+                                                            <option value="">Tarjeta de credito/debito</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas">
+                                                Agregar Producto
+                                            </button>
+                                            <div class="modal fade" id="modal-ventas" tabindex="-1">
+                                                <div class="modal-dialog bg-white">
+                                                    <div class="modal-header">
+
+                                                        <p class="text-primary m-0 fw-bold">Seleccionar Producto</p>
+
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="registro-docentes"><strong>Codigo </strong><br /></label>
+                                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="registro-docentes"><strong>Nombre</strong><br /></label>
+                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="registro-docentes"><strong>Precio</strong><br /></label>
+                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="registro-docentes"><strong>Cantidad en Stock </strong><br /></label>
+                                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" value="" required></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="registro-docentes"><strong>Cantidad vendida</strong><br /></label>
+                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+
+
+                                                            <div class="mb-3">
+                                                                <button class="btn btn-primary" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar </button>
+                                                                <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button">
+                                                                    <i class="fas fa-search fa-sm text-white"></i> Buscar 
+                                                                </a>
+                                                                <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="card-shadow mb-5">
+                                            <div class="card-header py-3">
+                                                <h6 class="text-primary fw-bold m-0">Detalle de la Factura</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <!--tabla para informacion de cursos -->
+                                                <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
+                                                    <table class="table my-0" id="infoCurso">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Codigo</th>
+                                                                <th>Descripción</th>
+                                                                <th>Precio</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Valor</th>
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <!--cuerpo de la tabla-->
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
+                                                                        <i class="fas fa-edit fa-sm text-white">Edit</i>
+                                                                    </a>
+
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
+                                                                        <i class="fas fa-edit fa-sm text-white">Edit</i>
+                                                                    </a>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
+                                                                        <i class="fas fa-edit fa-sm text-white">Edit</i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
+                                                                        <i class="fas fa-edit fa-sm text-white">Edit</i>
+                                                                    </a>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
+                                                                        <i class="fa-edit text-white">Edit</i>
+                                                                    </a>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+                                                    <!--barra navegacion entre tabla-->
+                                                    <div class="row">
+                                                        <div class="col-md-6 align-self-center">
+                                                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 5 </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                                                <ul class="pagination">
+                                                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                                                </ul>
+                                                            </nav>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <form>
+
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+                                                        <label>Sub Total: </label>
+                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+
+                                                    </div>
+
+                                                    <div class="col">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+                                                        <label>Descuento:</label>
+                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+
+                                                    </div>
+
+                                                    <div class="col">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+                                                        <label>Total </label>
+                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+
+                                                    </div>
+
+                                                    <div class="col">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+
+                                                    </div>
+                                                    <div class="col">
+                                                        <div>
+                                                            <br />
+                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button" onclick="mandar_alerta()">
+                                                                <i class="fas fa-shopping-bag"></i>Efectúar Venta
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                       
+                                        <!-- footer -->
+                                        @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                    </div>
+                                </div>
+
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

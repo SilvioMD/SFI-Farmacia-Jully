@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "AgregarProducto";
+}
+
+
+
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <!-- task, page, download counter  start -->
+                                        <div class="card-body">
+
+                                            <form>
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Tipo de producto</strong></label>
+                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                                <option value="">Medicamento</option>
+                                                                <option value="">Miscelaneos</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="card-header py-3">
+                                                    <p class="text-primary m-0 fw-bold">Datos de producto</p>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Nombre del producto</strong><br /></label>
+                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Unidad de Medida</strong><br /></label>
+                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Descripcion</strong></label>
+                                                            <textarea class="form-control" name="descripcion-cargo" id="descripcion-cargo" cols="30" rows="6" readonly>Aqui ingrese informacion relevante del producto.
+                            </textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Precio </strong><br /></label>
+                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad</strong><br /></label>
+                                                            <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad Minima</strong><br /></label>
+                                                            <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Laboratorio</strong></label>
+                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                                <option value="">Ramos</option>
+                                                                <option value="">Bayer</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Accion Farmacologica</strong></label>
+                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                                <option value="">Antigripal</option>
+                                                                <option value="">Antitusivos</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Presentación</strong></label>
+                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                                <option value="">Tableta</option>
+                                                                <option value="">Jarabe</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar producto</button></div>
+
+
+                                        </div>
+
+
+                                        </form>
+
+                                    </div>
+                                        
+                                        <!-- footer -->
+                                        @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                    </div>
+                                </div>
+
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

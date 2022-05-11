@@ -17,7 +17,7 @@ namespace SFI_Farmacia_Jully.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        } 
 
     }
 }
