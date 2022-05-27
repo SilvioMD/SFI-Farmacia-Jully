@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProveedorE>
 @{
     ViewBag.Title = "AgregarProveedor";
 }
@@ -40,26 +40,26 @@
                                                     </div>
                                                     <div class="modal-body">
 
-                                                        <form>
+                                                        <form action="~/Proveedor/Agregar" method="post">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="registro-docentes"><strong>Nombre del proveedor</strong><br /></label>
-                                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+                                                                        <input class="form-control" id="nombre-proveedor" name="NombreProveedor" required />
                                                                     </div>
                                                                 </div>
-                                                               
+
 
                                                             </div>
                                                             <div class="row">
-                                                               
+
                                                                 <div class="col">
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="registro-docentes"><strong>No.Telefono</strong></label>
-                                                                        <input class="form-control" type="text" name="papellido-docente" required>
+                                                                        <input class="form-control" id="telefono" type="text" name="NoTelefono">
                                                                     </div>
                                                                 </div>
-                                                               
+
 
                                                             </div>
 
@@ -68,15 +68,14 @@
                                                                 <div class="col">
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="registro-docentes"><strong>Dirección</strong></label>
-                                                                        <textarea class="form-control" name="descripcion-cargo" id="descripcion-cargo" cols="30" rows="4">
-                                                            </textarea>
+                                                                        <textarea class="form-control" id="direccion" name="DirProveedor" cols="30" rows="4"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
 
                                                             <div class="mb-3">
-                                                                <button class="btn btn-primary" type="submit" name="btn-registro-docente" id="btn-registro-docente">Guardar </button>
+                                                                <button class="btn btn-primary" type="submit">Guardar </button>
 
                                                                 <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                                             </div>
@@ -85,7 +84,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
 
                                             <div class="card-shadow mb-5">
                                                 <div class="card-header py-3">
@@ -94,95 +93,46 @@
                                                 <div class="card-body">
                                                     <!--tabla para informacion de cursos -->
                                                     <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
-                                                        <table class="table my-0" id="infoCurso">
-                                                            <thead>
+
+
+                                                        <table class="table my-0 text-center" id="infoProveedor">
+                                                            <thead class="align-center">
                                                                 <tr>
                                                                     <th>Codigo del proveedor</th>
                                                                     <th>Nombre</th>
                                                                     <th>NoTelefono</th>
                                                                     <th>Direccion</th>
-                                                                    <th>Fecha de Ingreso</th>
-
-
+                                                                    <th>Acciones</th>
                                                                 </tr>
                                                             </thead>
 
                                                             <tbody>
-                                                                <!--cuerpo de la tabla-->
-                                                                <tr>
 
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                            <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                        </a>
-                                                                       
-                                                                    </td>
-                                                                </tr>
+                                                                @foreach (var datos in Model)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@datos.IdProveedor</td>
+                                                                        <td>@datos.NombreProveedor</td>
+                                                                        <td>@datos.Telefono</td>
+                                                                        <td>@datos.Dirección</td>
+                                                                        <td>
+                                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                                <i class="feather icon-edit-1 text-white"></i>
 
-                                                                <tr>
+                                                                            </a>
+                                                                            <a class="btn bg-warning d-sm-inline-block text-white btn-baja" data-index=@datos.IdProveedor>
+                                                                                <i class="feather icon-trash text-white"></i>
 
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                            <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                        </a>
-                                                                       
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
 
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                            <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                        </a>
-                                                                        
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
+                                                                }
 
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                            <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                        </a>
-                                                                        
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                            <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                        </a>
-                                                                       
-                                                                    </td>
-                                                                </tr>
                                                             </tbody>
 
                                                         </table>
+
                                                         <!--barra navegacion entre tabla-->
                                                         <div class="row">
                                                             <div class="col-md-6 align-self-center">
@@ -207,7 +157,7 @@
                                             </div>
 
                                         </div>
-                                       
+
                                         <!-- footer -->
                                         @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
@@ -226,3 +176,57 @@
     </div>
 
 </body>
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            
+            $("#infoProveedor tr td .btnEditar").click(function () {
+                
+                
+                console.log("click en editar");
+               
+                $("#nombre-proveedor").val($(this).parent().parent().children()[1].innerHTML);
+                $("#telefono").val($(this).parent().parent().children()[2].innerHTML);
+                $("#direccion").val($(this).parent().parent().children()[3].innerHTML);
+                
+            });
+
+            $("#infoProveedor tr td .btn-baja").click(function () {
+
+                var id = $(this).parent().parent().children()[0].innerHTML;
+                
+                console.log(id);
+         
+            });
+
+
+        });
+        //cargar datos en el modal
+
+
+        function updateProveedor() {
+            $ajax({
+                type: "POST",
+                url: "",
+                data: ,
+                dataType: 'application/json; charset=utf-8',
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                },
+                success: function () {
+
+                }
+            });
+        }
+
+
+    </script>
+
+   
+
+
+}

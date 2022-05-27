@@ -1,0 +1,8 @@
+﻿
+var proveedor = {
+
+
+    get: function () {
+       
+    }
+}

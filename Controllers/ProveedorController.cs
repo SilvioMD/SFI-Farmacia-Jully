@@ -1,86 +1,34 @@
-﻿
+﻿using SFI_Farmacia_Jully.Models.Action;
+using SFI_Farmacia_Jully.Models.Entity;
 using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
 {
     public class ProveedorController : Controller
     {
+        
         // GET: Proveedor
         public ActionResult AgregarProveedor()
         {
-            return View();
+            return View(ProveedorA.Listar());
         }
 
-        // GET: Proveedor/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Proveedor/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Proveedor/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Agregar(string NombreProveedor,string NoTelefono, string DirProveedor)
         {
-            try
+            //llamar la entidad usuario; que contiene los campos de la base de datos
+            ProveedorE p = new ProveedorE
             {
-                // TODO: Add insert logic here
+                NombreProveedor = NombreProveedor,
+                Telefono = NoTelefono,
+                Dirección = DirProveedor
+            };
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ProveedorA.Insert(p);
+            return Redirect("~/Proveedor/AgregarProveedor");
         }
 
-        // GET: Proveedor/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Proveedor/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Proveedor/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Proveedor/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
+
+
