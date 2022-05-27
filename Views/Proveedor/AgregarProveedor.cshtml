@@ -45,6 +45,7 @@
                                                                 <div class="col">
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="registro-docentes"><strong>Nombre del proveedor</strong><br /></label>
+                                                                        <input  type="hidden" id="codigo-proveedor" name="IdProveedor"/>
                                                                         <input class="form-control" id="nombre-proveedor" name="NombreProveedor" required />
                                                                     </div>
                                                                 </div>
@@ -188,7 +189,7 @@
                 
                 
                 console.log("click en editar");
-               
+                $("#codigo-proveedor").val($(this).parent().parent().children()[0].innerHTML);
                 $("#nombre-proveedor").val($(this).parent().parent().children()[1].innerHTML);
                 $("#telefono").val($(this).parent().parent().children()[2].innerHTML);
                 $("#direccion").val($(this).parent().parent().children()[3].innerHTML);
@@ -198,27 +199,26 @@
             $("#infoProveedor tr td .btn-baja").click(function () {
 
                 var id = $(this).parent().parent().children()[0].innerHTML;
-                
-                console.log(id);
-         
+                BajaProveedor(id);
             });
 
 
         });
-        //cargar datos en el modal
+        
 
+        function BajaProveedor(id) {
 
-        function updateProveedor() {
-            $ajax({
+            var params = JSON.stringify({ IdProveedor: id});
+            $.ajax({
                 type: "POST",
-                url: "",
-                data: ,
-                dataType: 'application/json; charset=utf-8',
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                data: params,
+                url: "/Proveedor/Baja",
+                contentType: "application/json;charset=utf-8",
+                success: function (response) {
+                    console.log(response);
                 },
-                success: function () {
-
+                error: function (xhr, thrownError) {
+                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
                 }
             });
         }

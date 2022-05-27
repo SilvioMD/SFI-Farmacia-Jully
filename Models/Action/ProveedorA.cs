@@ -11,8 +11,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 {
     public class ProveedorA
     {
-        public static object With { get; private set; }
-
+        
         public static List<ProveedorE> Listar()
         {
            
@@ -48,7 +47,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                        Dirección = dt.Rows[i]["Direccion"].ToString(),
                        Telefono = dt.Rows[i]["Telefono"].ToString()
                     };
-
+                   
                     proveedor.Add(p);
                 }
                
@@ -69,10 +68,10 @@ namespace SFI_Farmacia_Jully.Models.Action
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@TIPO", 2),
+                new SqlParameter("@IdProveedor", p.IdProveedor),
                 new SqlParameter("@NombreProveedor", p.NombreProveedor),
                 new SqlParameter("@DireccionProveedor", p.Dirección),
                 new SqlParameter("@NumTelefono", p.Telefono)
-
             };
             //cadena de la consulta
             string sql = "SP_Proveedor";
@@ -88,7 +87,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
         }
 
-        public static bool Edit(ProveedorE p)
+        public static bool Baja(string IdProveedor)
         {
 
             //se guarda la cedena de conexion con la base de datos 
@@ -97,11 +96,9 @@ namespace SFI_Farmacia_Jully.Models.Action
             //agregar los comandos
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                new SqlParameter("@TIPO", 2),
-                new SqlParameter("@NombreProveedor", p.NombreProveedor),
-                new SqlParameter("@DireccionProveedor", p.Dirección),
-                new SqlParameter("@NumTelefono", p.Telefono)
-
+                new SqlParameter("@TIPO", 3),
+                new SqlParameter("@IdProveedor", int.Parse(IdProveedor))
+                
             };
 
             //cadena de la consulta
@@ -119,34 +116,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
         }
 
-        public static bool Baja(int Idproveedor)
-        {
-
-            //se guarda la cedena de conexion con la base de datos 
-            string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            //agregar los comandos
-            List<SqlParameter> parametros = new List<SqlParameter>
-                {
-                    new SqlParameter("@TIPO", 3),
-                    new SqlParameter("@IdProveedor", Idproveedor),
-
-                };
-
-            //cadena de la consulta
-            string sql = "SP_Proveedor";
-
-            int result = Data.Data.QueryInsert(sql, parametros, CommandType.StoredProcedure, Conexion);
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
+       
 
     }
 }
