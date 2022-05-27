@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ClienteE>
 @{
     ViewBag.Title = "AgregarCliente";
 }
@@ -27,7 +27,7 @@
 
                                     <div class="page-body">
                                         <!-- task, page, download counter  start -->
-                                        
+
                                         <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-cliente">
                                             Registrar Cliente
                                         </button>
@@ -41,18 +41,18 @@
 
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form>
+                                                    <form action="~/Cliente/Agregar" method="post">
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Primer Nombre</strong><br /></label>
-                                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+                                                                    <input class="form-control" id="pnombre-docente" name="PNombre" required />
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Segundo Nombre</strong><br /></label>
-                                                                    <input class="form-control" id="snombre-docente" name="snombre-docente" />
+                                                                    <input class="form-control" id="snombre-docente" name="SNombre" />
                                                                 </div>
                                                             </div>
 
@@ -62,25 +62,25 @@
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Primer Apellido</strong></label>
-                                                                    <input class="form-control" type="text" name="papellido-docente" id="papellido-docente" required>
+                                                                    <input class="form-control" type="text" name="PApellido" id="papellido-docente" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Segundo Apellido</strong></label>
-                                                                    <input class="form-control" type="text" name="sapellido-docente" id="sapellido-docente">
+                                                                    <input class="form-control" type="text" name="SApellido" id="sapellido-docente">
                                                                 </div>
                                                             </div>
 
                                                         </div>
 
                                                         <div class="row">
-                                                            
+
 
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>No.Telefono</strong></label>
-                                                                    <input class="form-control" type="text" name="papellido-docente" id="papellido-docente" required>
+                                                                    <input class="form-control" type="text" name="NumTelefono" id="papellido-docente" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -90,7 +90,7 @@
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Dirección</strong></label>
-                                                                    <textarea class="form-control" name="descripcion-cargo" id="descripcion-cargo" cols="30" rows="4"></textarea>
+                                                                    <textarea class="form-control" name="Direccion" id="descripcion-cargo" cols="30" rows="4"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -117,89 +117,38 @@
                                                     <table class="table my-0" id="infoCurso">
                                                         <thead>
                                                             <tr>
-                                                                <th>Codigo del proveedor</th>
+                                                                <th>Codigo</th>
                                                                 <th>Nombre</th>
                                                                 <th>NoTelefono</th>
                                                                 <th>Direccion</th>
-                                                                <th>Fecha de Ingreso</th>
+
 
 
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
-                                                            <!--cuerpo de la tabla-->
-                                                            <tr>
 
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                        <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                    </a>
+                                                            @foreach (var datos in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@datos.IdCliente</td>
+                                                                    <td>@datos.Nombre </td>
+                                                                    <td>@datos.Celular</td>
+                                                                    <td>@datos.Direccion</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-cliente">
+                                                                            <i class="feather icon-edit-1 text-white"></i>
 
-                                                                </td>
-                                                            </tr>
+                                                                        </a>
+                                                                        <a class="btn bg-warning d-sm-inline-block text-white btn-baja">
+                                                                            <i class="feather icon-trash text-white"></i>
 
-                                                            <tr>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
 
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                        <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                    </a>
-
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                        <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                    </a>
-
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                        <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                    </a>
-
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" onclick="mandar_alerta()">
-                                                                        <i class="fas fa-edit fa-sm text-white-50"></i>
-                                                                    </a>
-
-                                                                </td>
-                                                            </tr>
+                                                            }
                                                         </tbody>
 
                                                     </table>

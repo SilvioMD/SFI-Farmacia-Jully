@@ -28,9 +28,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
             //crear data table para almacenar los datos
             _ = new DataTable();
-            DataTable dt =
-
-                Data.Data.Query(sql, parametros, CommandType.Text, Conexion);
+            DataTable dt = Data.Data.Query(sql, parametros, CommandType.Text, Conexion);
 
             if (dt.Rows.Count > 0)
             {
