@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SFI_Farmacia_Jully.Models.Action;
+using SFI_Farmacia_Jully.Models.Entity;
 
 namespace SFI_Farmacia_Jully.Controllers
 {
@@ -11,79 +13,29 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Cliente
         public ActionResult AgregarCliente()
         {
-            return View();
+
+            return View(ClienteA.Listar());
         }
 
-        // GET: Cliente/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Cliente/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Cliente/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Agregar(string PNombre, string SNombre, string PApellido, string SApellido, string NumTelefono, string Direccion)
         {
-            try
+            //llamar la entidad usuario; que contiene los campos de la base de datos
+            ClienteE p = new ClienteE
             {
-                // TODO: Add insert logic here
+                PNombre = PNombre, 
+                Snombre = SNombre,
+                PApellido = PApellido,
+                SApellido = SApellido,
+                Celular = NumTelefono,
+                Direccion = Direccion
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            };
+
+            ClienteA.Insert(p);
+            return Redirect("~/Cliente/AgregarCliente");
         }
 
-        // GET: Cliente/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Cliente/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Cliente/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Cliente/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
