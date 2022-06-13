@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SFI_Farmacia_Jully.Models.Action;
+using SFI_Farmacia_Jully.Models.Entity;
 using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
@@ -11,7 +9,7 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Ventas
         public ActionResult Carrito()
         {
-            return View();
+            return View(ProductoA.Listar());
 
         }
 

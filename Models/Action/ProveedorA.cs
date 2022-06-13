@@ -103,6 +103,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             string sql = "SP_Proveedor";
 
             int result = Data.Data.QueryInsert(sql, parametros, CommandType.StoredProcedure, Conexion);
+
             if (result > 0)
             {
                 return true;

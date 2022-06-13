@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ClienteE>
 @{
     ViewBag.Title = "AgregarCliente";
 }
@@ -27,7 +27,7 @@
 
                                     <div class="page-body">
                                         <!-- task, page, download counter  start -->
-                                        
+
                                         <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-cliente">
                                             Registrar Cliente
                                         </button>
@@ -41,18 +41,19 @@
 
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form>
+                                                    <form action="~/Cliente/Agregar" method="post">
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Primer Nombre</strong><br /></label>
-                                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+                                                                    <input type="hidden" id="codigo-cliente" name="IdCliente" />
+                                                                    <input class="form-control" id="PNombre" name="PNombre" required />
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Segundo Nombre</strong><br /></label>
-                                                                    <input class="form-control" id="snombre-docente" name="snombre-docente" />
+                                                                    <input class="form-control" id="SNombre" name="SNombre" />
                                                                 </div>
                                                             </div>
 
@@ -62,25 +63,25 @@
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Primer Apellido</strong></label>
-                                                                    <input class="form-control" type="text" name="papellido-docente" id="papellido-docente" required>
+                                                                    <input class="form-control" type="text" name="PApellido" id="PApellido" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Segundo Apellido</strong></label>
-                                                                    <input class="form-control" type="text" name="sapellido-docente" id="sapellido-docente">
+                                                                    <input class="form-control" type="text" name="SApellido" id="SApellido">
                                                                 </div>
                                                             </div>
 
                                                         </div>
 
                                                         <div class="row">
-                                                            
+
 
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>No.Telefono</strong></label>
-                                                                    <input class="form-control" type="text" name="papellido-docente" id="papellido-docente" required>
+                                                                    <input class="form-control" type="text" name="NumTelefono" id="NumTelefono" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -90,7 +91,7 @@
                                                             <div class="col">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="registro-docentes"><strong>Dirección</strong></label>
-                                                                    <textarea class="form-control" name="descripcion-cargo" id="descripcion-cargo" cols="30" rows="4"></textarea>
+                                                                    <textarea class="form-control" name="Direccion" id="Direccion" cols="30" rows="4"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -114,124 +115,49 @@
                                             <div class="card-body">
                                                 <!--tabla para informacion de cursos -->
                                                 <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
-                                                    <table class="table my-0" id="infoCurso">
+
+                                                    <table class="table my-0" id="infoCliente">
+
                                                         <thead>
                                                             <tr>
-                                                                <th>Codigo del proveedor</th>
-                                                                <th>Nombre</th>
+                                                                <th>Codigo</th>
+                                                                <th>P.Nombre</th>
+                                                                <th>S.Nombre</th>
+                                                                <th>P.Apellido</th>
+                                                                <th>S.Apellido</th>
                                                                 <th>NoTelefono</th>
                                                                 <th>Direccion</th>
-                                                                <th>Fecha de Ingreso</th>
-
-
+                                                                <th>Acciones</th>
                                                             </tr>
                                                         </thead>
-
                                                         <tbody>
-                                                            <!--cuerpo de la tabla-->
-                                                            <tr>
 
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block" >
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
+                                                            @foreach (var datos in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@datos.IdCliente</td>
+                                                                    <td>@datos.PNombre </td>
+                                                                    <td>@datos.Snombre</td>
+                                                                    <td>@datos.PApellido</td>
+                                                                    <td>@datos.SApellido</td>
+                                                                    <td>@datos.Celular</td>
+                                                                    <td>@datos.Direccion</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-cliente">
+                                                                            <i class="feather icon-edit-1 text-white"></i>
 
-                                                                </td>
-                                                            </tr>
+                                                                        </a>
+                                                                        <a class="btn bg-warning d-sm-inline-block text-white btn-baja">
+                                                                            <i class="feather icon-trash text-white"></i>
 
-                                                            <tr>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
 
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                            }
                                                         </tbody>
 
                                                     </table>
-                                                    <!--barra navegacion entre tabla-->
-                                                    <div class="row">
-                                                        <div class="col-md-6 align-self-center">
-                                                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 5 </p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                                                <ul class="pagination">
-                                                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
-
-                                                    </div>
 
                                                 </div>
                                             </div>
@@ -258,3 +184,69 @@
     </div>
 
 </body>
+
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+
+            $(document).ready(function () {
+                $('#infoCliente').DataTable({
+                    responsive: true
+                });
+
+            });
+
+            $("#infoCliente tr td .btnEditar").click(function () {
+
+                $("#codigo-cliente").val($(this).parent().parent().children()[0].innerHTML);
+                $("#PNombre").val($(this).parent().parent().children()[1].innerHTML);
+                $("#SNombre").val($(this).parent().parent().children()[2].innerHTML);
+                $("#PApellido").val($(this).parent().parent().children()[3].innerHTML);
+                $("#SApellido").val($(this).parent().parent().children()[4].innerHTML);
+                $("#NumTelefono").val($(this).parent().parent().children()[5].innerHTML);
+                $("#Direccion").val($(this).parent().parent().children()[6].innerHTML);
+
+            });
+
+            $("#infoCliente tr td .btn-baja").click(function () {
+
+                var id = $(this).parent().parent().children()[0].innerHTML;
+                BajaCliente(id);
+            });
+
+
+        });
+
+        function BajaCliente(id) {
+
+            var params = JSON.stringify({ IdCliente: id });
+            $.ajax({
+                type: "POST",
+                data: params,
+                url: "/Cliente/Baja",
+                contentType: "application/json;charset=utf-8",
+                success: function (response) {
+
+                    if (response.result == 'ProblemaBaja') {
+                        console.log("datso incorrectos para dar baja al cliente");
+                    }
+                    else if (response.result == 'Redirect') {
+                        //redirecting to main page from here for the time being.
+                        window.location = response.url;
+                    }
+                },
+                error: function (xhr, thrownError) {
+                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                }
+            });
+        }
+
+
+    </script>
+}

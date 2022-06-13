@@ -1,9 +1,7 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProductoE>
 @{
     ViewBag.Title = "Carrito";
 }
-
-
 
 <body>
 
@@ -62,74 +60,141 @@
                                             <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas">
                                                 Agregar Producto
                                             </button>
+                                           
                                             <div class="modal fade" id="modal-ventas" tabindex="-1">
-                                                <div class="modal-dialog bg-white">
-                                                    <div class="modal-header">
+                                                <div class="modal-dialog modal-xl bg-white">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
 
-                                                        <p class="text-primary m-0 fw-bold">Seleccionar Producto</p>
+                                                            <p class="text-primary m-0 fw-bold">Seleccionar Producto</p>
 
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+
+                                                                <div class="row">
+
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="registro-docentes"><strong>Codigo </strong><br /></label>
+                                                                            <input class="form-control" id="IdMed" name="Idmedicamento" type="hidden"/>
+                                                                            <input class="form-control" id="codigo" name="pnombre-docente" readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="registro-docentes"><strong>Nombre</strong><br /></label>
+                                                                            <input class="form-control" id="nombre" name="snombre-docente" readonly/>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="row">
+
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="registro-docentes"><strong>Precio</strong><br /></label>
+                                                                            <input class="form-control" id="precio" name="snombre-docente" readonly/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad actual</strong><br /></label>
+                                                                            <input class="form-control" id="cantidad-actual" name="pnombre-docente" value="" readonly/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad vendida</strong><br /></label>
+                                                                            <input class="form-control" id="cantidad-vendida" name="snombre-docente"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="mb-3">
+
+                                                                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                    <button class="btn btn-primary" name="btn-registro-docente" id="btn-agregar-producto" data-dismiss="modal">Agregar </button>
+
+                                                                </div>
+
+                                                            </form>
+
+
+                                                            <div class="card-shadow mb-auto">
+                                                                <div class="card-header py-3">
+                                                                    <h6 class="text-primary fw-bold m-0">Lista de productos</h6>
+                                                                </div>
+                                                                <div class="card-body">
+
+
+                                                                    <!--tabla para informacion de cursos -->
+                                                                    <div class="table-responsive table mt-2" id="tblbuscar" role="grid">
+
+
+                                                                        <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+
+                                                                            <thead class="align-center">
+
+                                                                                <tr>
+                                                                                    <th>IdMedicamento</th>
+                                                                                    <th>Codigo</th>
+                                                                                    <th>Nombre del Producto</th>
+                                                                                    <th>Unidad de Medida</th>
+                                                                                    <th>Presentacion</th>
+                                                                                    <th>AccionFarmacologica</th>
+                                                                                    <th>Laboratorio</th>
+                                                                                    <th>Precio</th>
+                                                                                    <th>Cantidad</th>
+                                                                                    <th>Acciones</th>
+                                                                                </tr>
+
+                                                                            </thead>
+
+                                                                            <tbody>
+                                                                                @foreach (var datos in Model)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>@datos.IdMedicamento</td>
+                                                                                        <td>@datos.Codigo</td>
+                                                                                        <td>@datos.Nombre</td>
+                                                                                        <td>@datos.UnidadMedida</td>
+                                                                                        <td>@datos.Presentacion</td>
+                                                                                        <td>@datos.AccionFarmacologica</td>
+                                                                                        <td>@datos.Laboratorio</td>
+                                                                                        <td>@datos.Precio</td>
+                                                                                        <td>@datos.CantidadDisponible</td>
+                                                                                        <td>
+                                                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                                                <i class="feather icon-edit-1 text-white"></i>
+
+                                                                                            </a>
+                                                                                           
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                 }
+
+                                                                            </tbody>
+
+                                                                        </table>
+
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <form>
 
-                                                            <div class="row">
-
-                                                                <div class="col">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="registro-docentes"><strong>Codigo </strong><br /></label>
-                                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="registro-docentes"><strong>Nombre</strong><br /></label>
-                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="registro-docentes"><strong>Precio</strong><br /></label>
-                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="row">
-
-                                                                <div class="col">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="registro-docentes"><strong>Cantidad en Stock </strong><br /></label>
-                                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" value="" required></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="registro-docentes"><strong>Cantidad vendida</strong><br /></label>
-                                                                        <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
-
-
-                                                            <div class="mb-3">
-                                                                <button class="btn btn-primary" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar </button>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button">
-                                                                    <i class="fas fa-search fa-sm text-white"></i> Buscar 
-                                                                </a>
-                                                                <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
                                                 </div>
                                             </div>
 
-
-
-
                                         </div>
+
+
 
                                         <div class="card-shadow mb-5">
                                             <div class="card-header py-3">
@@ -137,8 +202,8 @@
                                             </div>
                                             <div class="card-body">
                                                 <!--tabla para informacion de cursos -->
-                                                <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
-                                                    <table class="table my-0" id="infoCurso">
+                                                <div class="table-responsive table mt-2" id="tabladetalle" role="grid">
+                                                    <table class="table my-0" id="infodetalle">
                                                         <thead>
                                                             <tr>
                                                                 <th>Codigo</th>
@@ -146,115 +211,17 @@
                                                                 <th>Precio</th>
                                                                 <th>Cantidad</th>
                                                                 <th>Valor</th>
-
+                                                                <th>Aciones</th>
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
-                                                            <!--cuerpo de la tabla-->
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-
-                                                                <td>
-                                                                     <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                            <i class="feather icon-edit-1 text-white"></i>
-                                                                        </a>
-                                                                        <a class="btn bg-warning d-sm-inline-block">
-                                                                            <i class="feather icon-trash text-white"></i>
-                                                                        </a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-
-                                                                <td>
-                                                                    <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                        <i class="feather icon-edit-1 text-white"></i>
-                                                                    </a>
-                                                                    <a class="btn bg-warning d-sm-inline-block">
-                                                                        <i class="feather icon-trash text-white"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                           
                                                         </tbody>
 
                                                     </table>
 
-                                                    <!--barra navegacion entre tabla-->
-                                                    <div class="row">
-                                                        <div class="col-md-6 align-self-center">
-                                                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 5 </p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                                                <ul class="pagination">
-                                                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
 
-                                                    </div>
 
                                                 </div>
                                             </div>
@@ -334,7 +301,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <label>Total </label>
-                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
 
                                                     </div>
 
@@ -376,16 +343,14 @@
                                                 </div>
                                             </form>
                                         </div>
-                                       
+
                                         <!-- footer -->
                                         @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
                                     </div>
                                 </div>
 
-                                <div id="styleSelector">
-
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -394,4 +359,96 @@
         </div>
     </div>
 
+
 </body>
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(document).ready(function () {
+                $('#InfoProducto').DataTable({
+                    responsive: true
+                });
+
+            });
+
+            //evento para agregar producto a la tabla detalle
+            $("#btn-agregar-producto").click(function () {
+
+                var Id = document.getElementById('IdMed').value;
+                console.log("dentro de insertar");
+                var codigo = document.getElementById('codigo').value;
+                var nombre = document.getElementById('nombre').value;
+                var precio = document.getElementById('precio').value;
+                var cantidad = document.getElementById('cantidad-vendida').value;
+
+                if (codigo !== "" || nombre !== "" || precio !== "" || cantidad !== "") {
+                    Insertar(codigo, nombre, precio, cantidad);
+                } else {
+                    console.log("no se puede agregar");
+                }
+                
+
+            });
+
+
+            //eventso de la tabla detalle de venta
+            $("#infodetalle tr td .btnEditar").click(function () {
+
+                console.log("dentro de editar");
+
+            });
+
+            $("#infodetalle tr td .btn-baja").click(function () {
+
+                console.log("dentro de baja");
+
+            });
+
+            //evento de la tabla de busqueda de productos
+            $("#InfoProducto tr td .btnAgregar").click(function () {
+
+                
+                $("#codigo").val($(this).parent().parent().children()[1].innerHTML);
+                $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
+                $("#precio").val($(this).parent().parent().children()[7].innerHTML);
+                $("#cantidad-actual").val($(this).parent().parent().children()[8].innerHTML);
+
+            });
+
+        });
+
+        function Insertar(codigo, nombre, precio, cantidad) {
+
+            //obtenr la referencia de la tabla detalle
+            let tbldatos = document.getElementById('infodetalle').insertRow(1);
+            //obtener los indices de las celdas 
+            let col1 = tbldatos.insertCell(0);
+            let col2 = tbldatos.insertCell(1);
+            let col3 = tbldatos.insertCell(2);
+            let col4 = tbldatos.insertCell(3);
+            let col5 = tbldatos.insertCell(4);
+            let col6 = tbldatos.insertCell(5);
+
+            //obtener el subtotal del producto
+            var subtotal = parseFloat(precio) * parseInt(cantidad, 10);
+            console.log(subtotal);
+            //agregar los elementos a la tabla detalle
+            col1.innerHTML = codigo;
+            col2.innerHTML = nombre;
+            col3.innerHTML = precio;
+            col4.innerHTML = cantidad;
+            col5.innerHTML = String(subtotal);
+            col6.innerHTML = "<a class='btn btn-primary d-none d-sm-inline-block btnEditar'><i class='feather icon-edit-1 text-white'></i></a>" + " " + "<a class='btn bg-warning d-sm-inline-block btn-baja' ><i class='feather icon-trash text-white'></i></a>";
+
+        }
+
+
+    </script>
+}
+

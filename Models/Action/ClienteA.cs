@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using SFI_Farmacia_Jully.Models.Entity;
 using System.Data;
 using System.Data.SqlClient;
@@ -42,10 +40,13 @@ namespace SFI_Farmacia_Jully.Models.Action
                     ClienteE p = new ClienteE()
                     {
                         IdCliente = Convert.ToInt32(dt.Rows[i]["CodigoCliente"].ToString()),
-                        Nombre = dt.Rows[i]["Nombre Completo"].ToString(),
+                        PNombre = dt.Rows[i]["P.Nombre"].ToString(),
+                        Snombre = dt.Rows[i]["S.Nombre"].ToString(),
+                        PApellido = dt.Rows[i]["P.Apellido"].ToString(),
+                        SApellido = dt.Rows[i]["S.Apellido"].ToString(),
                         Celular = dt.Rows[i]["celular"].ToString(),
                         Direccion = dt.Rows[i]["Direccion"].ToString()
-                        
+
                     };
 
                     cliente.Add(p);
@@ -67,6 +68,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@TIPO", 2),
+                new SqlParameter("@IdPersona", p.IdCliente),
                 new SqlParameter("@PNombre", p.PNombre),
                 new SqlParameter("@SNombre", p.Snombre),
                 new SqlParameter("@PApellido", p.PApellido),
@@ -79,7 +81,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             string sql = "SP_Cliente";
 
             int result = Data.Data.QueryInsert(sql, parametros, CommandType.StoredProcedure, Conexion);
-           
+
             if (result > 0)
             {
                 return true;
@@ -91,5 +93,34 @@ namespace SFI_Farmacia_Jully.Models.Action
 
         }
 
+        public static bool Baja(string IdCliente)
+        {
+
+            //se guarda la cedena de conexion con la base de datos 
+            string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            //agregar los comandos
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@TIPO", 3),
+                new SqlParameter("@IdCliente", int.Parse(IdCliente))
+
+            };
+
+            //cadena de la consulta
+            string sql = "SP_Cliente";
+
+            int result = Data.Data.QueryInsert(sql, parametros, CommandType.StoredProcedure, Conexion);
+
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

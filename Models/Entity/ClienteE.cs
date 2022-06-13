@@ -18,6 +18,6 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public int Sexo { get; set; }
         public string Celular { get; set; }
         public DateTime FechaIngreso { get; set; }
-        public string Nombre { get; set; }
+        
     }
 }

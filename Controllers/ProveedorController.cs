@@ -16,21 +16,38 @@ namespace SFI_Farmacia_Jully.Controllers
         [HttpPost]
         public ActionResult Agregar(string NombreProveedor,string NoTelefono, string DirProveedor,string IdProveedor)
         {
+
+            ProveedorE p;
             if (IdProveedor is null)
             {
                 IdProveedor = "0";
             }
-
-            //llamar la entidad usuario; que contiene los campos de la base de datos
-            ProveedorE p = new ProveedorE
+            
+            if(IdProveedor == "")
             {
-                IdProveedor = int.Parse(IdProveedor),
-                NombreProveedor = NombreProveedor,
-                Telefono = NoTelefono,
-                Dirección = DirProveedor
-            };
+                //llamar la entidad usuario; que contiene los campos de la base de datos
+                 p = new ProveedorE
+                {
+                    NombreProveedor = NombreProveedor,
+                    Telefono = NoTelefono,
+                    Dirección = DirProveedor
+                };
+                ProveedorA.Insert(p);
+            }
+            else
+            {
+                //llamar la entidad usuario; que contiene los campos de la base de datos
+                p = new ProveedorE
+                {
+                    IdProveedor = int.Parse(IdProveedor),
+                    NombreProveedor = NombreProveedor,
+                    Telefono = NoTelefono,
+                    Dirección = DirProveedor
+                };
+                ProveedorA.Insert(p);
+            }
 
-            ProveedorA.Insert(p);
+            
             return Redirect("~/Proveedor/AgregarProveedor");
         }
 
@@ -38,8 +55,17 @@ namespace SFI_Farmacia_Jully.Controllers
         public ActionResult Baja(string IdProveedor)
         {
            
-            ProveedorA.Baja(IdProveedor);
-            return Redirect("~/Proveedor/AgregarProveedor");
+           if (ProveedorA.Baja(IdProveedor) == false)
+            {
+                return Json(new { result = "ProblemaBaja" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { result = "Redirect", url = Url.Action("AgregarProveedor", "Proveedor") });
+
+            }
+
+
         }
 
     }

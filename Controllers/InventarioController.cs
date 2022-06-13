@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SFI_Farmacia_Jully.Models.Action;
+using SFI_Farmacia_Jully.Models.Entity;
 using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
@@ -11,79 +9,53 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Inventario
         public ActionResult AgregarProducto()
         {
-            return View();
+
+            ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "Id", "Laboratorio");
+            ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "Id", "AccionFarmacologica");
+            ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "Id", "Presentacion");
+            return View(ProductoA.Listar());
         }
 
-        // GET: Inventario/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Inventario/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Inventario/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Agregar(string NombreProducto,string Tipo,string UnidadMedida,string descripcion, string Precio, string CantDisp, string CantMinima,string CboLaboratorio, string CboAccionFarm, string CboPresentacion)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+            ProductoE p;
+
+            p = new ProductoE
             {
-                return View();
-            }
+                Nombre = NombreProducto,
+                TipoPoducto = int.Parse(Tipo),
+                UnidadMedida = UnidadMedida,
+                Descripcion = descripcion,
+                Precio = decimal.Parse(Precio),
+                CantidadDisponible = int.Parse(CantDisp),
+                CantidadMinima = int.Parse(CantMinima),
+                IdLaboratorio = int.Parse(CboLaboratorio),
+                IdAccionFarmacologica = int.Parse(CboAccionFarm),
+                IdPresentacion = int.Parse(CboPresentacion)
+            };
+            ProductoA.Insert(p);
+
+            return Redirect("~/Inventario/AgregarProducto");
         }
 
-        // GET: Inventario/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Inventario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Baja(string IdProducto)
         {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (ProductoA.Baja(IdProducto) == false)
             {
-                return View();
+                return Json(new { result = "ProblemaBaja" }, JsonRequestBehavior.AllowGet);
             }
+            else
+            {
+                return Json(new { result = "Redirect", url = Url.Action("AgregarProducto", "Inventario") });
+
+            }
+
+
         }
 
-        // GET: Inventario/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Inventario/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

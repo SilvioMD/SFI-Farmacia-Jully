@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProductoE>
 @{
     ViewBag.Title = "AgregarProducto";
 }
@@ -10,7 +10,7 @@
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
+            <div class="pcoded-container navbar-wrapper">
 
             @RenderPage("~/Views/Shared/Layout_header.cshtml")
 
@@ -28,7 +28,7 @@
                                         <!-- task, page, download counter  start -->
                                         <div class="card-body">
 
-                                            <form>
+                                            <form action="~/Inventario/Agregar" method="post">
                                                 <div class="row">
 
                                                     <div class="col">
@@ -37,10 +37,11 @@
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
+
                                                             <label class="form-label" for="registro-docentes"><strong>Tipo de producto</strong></label>
-                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                                <option value="">Medicamento</option>
-                                                                <option value="">Miscelaneos</option>
+                                                            <select class="form-control" name="Tipo" id="select-cargo-docente" required>
+                                                                <option value="1">Medicamento</option>
+                                                                <option value="2">Miscelaneos</option>
 
                                                             </select>
                                                         </div>
@@ -55,20 +56,20 @@
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Nombre del producto</strong><br /></label>
-                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                            <input class="form-control" id="nombre" name="NombreProducto" required />
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Unidad de Medida</strong><br /></label>
-                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                            <input class="form-control" id="unidad_medida" name="UnidadMedida" required />
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Descripcion</strong></label>
-                                                            <textarea class="form-control" name="descripcion-cargo" id="descripcion-cargo" cols="30" rows="6" readonly>Aqui ingrese informacion relevante del producto.
-                            </textarea>
+                                                            <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="6">
+                                                                   </textarea>
                                                         </div>
                                                     </div>
 
@@ -79,19 +80,19 @@
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Precio </strong><br /></label>
-                                                            <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                            <input class="form-control" id="precio" name="Precio" required />
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Cantidad</strong><br /></label>
-                                                            <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                            <input class="form-control" id="cantidad" name="CantDisp" required />
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Cantidad Minima</strong><br /></label>
-                                                            <input class="form-control" id="snombre-docente" name="snombre-docente"></input>
+                                                            <input class="form-control" id="cantidadminima" name="CantMinima" required />
                                                         </div>
                                                     </div>
 
@@ -100,31 +101,22 @@
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Laboratorio</strong></label>
-                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                                <option value="">Ramos</option>
-                                                                <option value="">Bayer</option>
+                                                            @Html.DropDownList("CboLaboratorio", null, "Selecciona", new { @class = "form-control", @name = "CboLaboratorio", @id = "cbolab" })
 
-                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Accion Farmacologica</strong></label>
-                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                                <option value="">Antigripal</option>
-                                                                <option value="">Antitusivos</option>
+                                                            @Html.DropDownList("CboAccionFarm", null, "Selecciona", new { @class = "form-control", @name = "CboAccionFarm", @id = "cboAF" })
 
-                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Presentación</strong></label>
-                                                            <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                                <option value="">Tableta</option>
-                                                                <option value="">Jarabe</option>
+                                                            @Html.DropDownList("CboPresentacion", null, "Selecciona", new { @class = "form-control", @name = "CboPresentacion", @id = "cbopresent" })
 
-                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,28 +125,164 @@
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar producto</button></div>
 
 
+
+
+                                            </form>
+                                        </div>
+
+                                        <div class="card-shadow mb-5">
+                                            <div class="card-header py-3">
+                                                <h6 class="text-primary fw-bold m-0">Lista de productos</h6>
+                                            </div>
+                                            <div class="card-body">
+
+                                               
+                                                <!--tabla para informacion de cursos -->
+                                                <div class="table-responsive table mt-2" id="tabla" role="grid">
+
+
+                                                    <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+                                                        
+                                                        <thead class="align-center">
+
+                                                            <tr>
+                                                                <th>IdMedicamento</th>
+                                                                <th>Codigo</th>
+                                                                <th>Nombre del Producto</th>
+                                                                <th>Unidad de Medida</th>
+                                                                <th>Presentacion</th>
+                                                                <th>AccionFarmacologica</th>
+                                                                <th>Laboratorio</th>
+                                                                <th>Precio</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Acciones</th>
+                                                            </tr>
+
+                                                        </thead>
+
+                                                        <tbody>
+
+                                                            @foreach (var datos in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@datos.IdMedicamento</td>
+                                                                    <td>@datos.Codigo</td>
+                                                                    <td>@datos.Nombre</td>
+                                                                    <td>@datos.UnidadMedida</td>
+                                                                    <td>@datos.Presentacion</td>
+                                                                    <td>@datos.AccionFarmacologica</td>
+                                                                    <td>@datos.Laboratorio</td>
+                                                                    <td>@datos.Precio</td>
+                                                                    <td>@datos.CantidadDisponible</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                            <i class="feather icon-edit-1 text-white"></i>
+
+                                                                        </a>
+                                                                        <a class="btn bg-warning d-sm-inline-block text-white btn-baja" data-index="">
+                                                                            <i class="feather icon-trash text-white"></i>
+
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+
+                                                            }
+
+                                                        </tbody>
+
+                                                    </table>
+
+                                                  
+                                                </div>
+                                            </div>
                                         </div>
 
 
-                                        </form>
-
                                     </div>
-                                        
-                                        <!-- footer -->
-                                        @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
-                                    </div>
-                                </div>
-
-                                <div id="styleSelector">
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
                                 </div>
+                            </div>
+
+                            <div id="styleSelector">
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
 
 </body>
+
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(document).ready(function () {
+                $('#InfoProducto').DataTable({
+                    responsive:true
+                });
+                
+            });
+
+            $("#InfoProducto tr td .btnEditar").click(function () {
+
+               
+                $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
+                $("#unidad_medida").val($(this).parent().parent().children()[3].innerHTML);
+                $("#precio").val($(this).parent().parent().children()[7].innerHTML);
+                $("#cantidad").val($(this).parent().parent().children()[8].innerHTML);
+               
+            });
+
+            $("#InfoProducto tr td .btn-baja").click(function () {
+
+                console.log($(this).parent().parent().children()[0].innerHTML)
+                var id = $(this).parent().parent().children()[0].innerHTML;
+                BajaProducto(id);
+            });
+
+        });
+
+
+        function BajaProducto(id) {
+
+            var params = JSON.stringify({ IdProducto: id});
+            $.ajax({
+                type: "POST",
+                data: params,
+                url: "/Inventario/Baja",
+                contentType: "application/json;charset=utf-8",
+                success: function (response) {
+
+                    if (response.result == 'ProblemaBaja') {
+                        console.log("datos incorrectos para dar baja al proveedor");
+                    }
+                    else if (response.result == 'Redirect') {
+                        //redirecting to main page from here for the time being.
+                        window.location = response.url;
+                    }
+                },
+                error: function (xhr, thrownError) {
+                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                }
+            });
+        }
+
+
+    </script>
+
+
+
+
+}
