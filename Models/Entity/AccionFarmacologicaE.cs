@@ -7,7 +7,8 @@ namespace SFI_Farmacia_Jully.Models.Entity
 {
     public class AccionFarmacologicaE
     {
-        public int Id { get; set; }
+        public int IdAccionFarmacologica { get; set; }
         public string AccionFarmacologica { get; set; }
+        public string Descripcion { get; set; }
     }
 }

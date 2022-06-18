@@ -16,12 +16,16 @@ namespace SFI_Farmacia_Jully.Controllers
             return View(ProductoA.Listar());
         }
 
+        public ActionResult Buscar()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Agregar(string NombreProducto,string Tipo,string UnidadMedida,string descripcion, string Precio, string CantDisp, string CantMinima,string CboLaboratorio, string CboAccionFarm, string CboPresentacion)
         {
 
             ProductoE p;
-
             p = new ProductoE
             {
                 Nombre = NombreProducto,
@@ -35,6 +39,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 IdAccionFarmacologica = int.Parse(CboAccionFarm),
                 IdPresentacion = int.Parse(CboPresentacion)
             };
+
             ProductoA.Insert(p);
 
             return Redirect("~/Inventario/AgregarProducto");
@@ -53,7 +58,6 @@ namespace SFI_Farmacia_Jully.Controllers
                 return Json(new { result = "Redirect", url = Url.Action("AgregarProducto", "Inventario") });
 
             }
-
 
         }
 

@@ -6,10 +6,10 @@
 
 
 <body>
-
+    @RenderPage("~/Views/Inventario/Buscar.cshtml")
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
+
         <div class="pcoded-container navbar-wrapper">
 
             @RenderPage("~/Views/Shared/Layout_header.cshtml")
@@ -19,104 +19,43 @@
                 <div class="pcoded-wrapper">
 
                     @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+
                     <div class="pcoded-content">
+
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
 
-                                    <div class="page-body">
-                                        <!-- task, page, download counter  start -->
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">Datos de compra</p>
+                                    </div>
+                                    <div class="row">
 
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Datos de compra</p>
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
-                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
-                                                    <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                        <option value="">Ramos</option>
-                                                        <option value="">Solka</option>
-                                                        <option value="">Bayer</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas">
-                                            Agregar Producto
-                                        </button>
-                                        <br />
-
-                                        <div class="modal fade" id="modal-ventas" tabindex="-1">
-                                            <div class="modal-dialog bg-white">
-                                                <div class="modal-header">
-
-                                                    <p class="text-primary m-0 fw-bold">Seleccionar Producto</p>
-
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-
-                                                        <div class="row">
-
-                                                            <div class="col">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="registro-docentes"><strong>Codigo </strong><br /></label>
-                                                                    <input class="form-control" id="pnombre-docente" required />
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="registro-docentes"><strong>Nombre</strong><br /></label>
-                                                                    <input class="form-control" id="snombre-docente" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="registro-docentes"><strong>Precio de compra</strong><br /></label>
-                                                                    <input class="form-control" id="snombre-docente" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="registro-docentes"><strong>Cantidad comprada</strong><br /></label>
-                                                                    <input class="form-control" id="snombre-docente" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <button class="btn btn-primary" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar </button>
-                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button">
-                                                                <i class="fas fa-search fa-sm text-white"></i> Buscar 
-                                                            </a>
-                                                            <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                        </div>
-
-                                                    </form>
-
-                                                </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
+                                                <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
                                             </div>
                                         </div>
-
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
+                                                <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
+                                                    <option value="">Ramos</option>
+                                                    <option value="">Solka</option>
+                                                    <option value="">Bayer</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     </div>
+
+                                    <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas" onclick="Limpiar()">
+                                        Agregar Producto
+                                    </button>
+                                    <br />
+
+
                                     <div class="card-shadow mb-5">
                                         <div class="card-header py-3">
                                             <h6 class="text-primary fw-bold m-0">Detalle de la Factura</h6>
@@ -132,7 +71,7 @@
                                                             <th>Precio</th>
                                                             <th>Cantidad</th>
                                                             <th>Valor</th>
-
+                                                            <th>Acciones</th>
                                                         </tr>
                                                     </thead>
 
@@ -146,79 +85,13 @@
                                                             <td></td>
 
                                                             <td>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                    <i class="feather icon-edit-1 text-white"></i>
-                                                                </a>
+                                                                
                                                                 <a class="btn bg-warning d-sm-inline-block">
                                                                     <i class="feather icon-trash text-white"></i>
                                                                 </a>
                                                             </td>
                                                         </tr>
 
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-
-                                                            <td>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                    <i class="feather icon-edit-1 text-white"></i>
-                                                                </a>
-                                                                <a class="btn bg-warning d-sm-inline-block">
-                                                                    <i class="feather icon-trash text-white"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-
-                                                            <td>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                    <i class="feather icon-edit-1 text-white"></i>
-                                                                </a>
-                                                                <a class="btn bg-warning d-sm-inline-block">
-                                                                    <i class="feather icon-trash text-white"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-
-                                                            <td>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                    <i class="feather icon-edit-1 text-white"></i>
-                                                                </a>
-                                                                <a class="btn bg-warning d-sm-inline-block">
-                                                                    <i class="feather icon-trash text-white"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-
-                                                            <td>
-                                                                <a class="btn btn-primary d-none d-sm-inline-block">
-                                                                    <i class="feather icon-edit-1 text-white"></i>
-                                                                </a>
-                                                                <a class="btn bg-warning d-sm-inline-block">
-                                                                    <i class="feather icon-trash text-white"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
                                                     </tbody>
 
                                                 </table>
@@ -320,7 +193,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <label>Total </label>
-                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required></input>
+                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required/>
 
                                                 </div>
 
@@ -380,3 +253,76 @@
     </div>
 
 </body>
+
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(document).ready(function () {
+
+                $('#InfoProducto').DataTable({
+                    responsive: true
+                });
+
+                //evento de la tabla de busqueda de productos
+                $("#InfoProducto tr td .btnAgregar").click(function () {
+
+
+                    $("#codigo").val($(this).parent().parent().children()[0].innerHTML);
+                    $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
+                    $("#precio").val($(this).parent().parent().children()[6].innerHTML);
+                    $("#cantidad-actual").val($(this).parent().parent().children()[7].innerHTML);
+
+                });
+
+            });
+
+            
+        });
+
+        function Insertar(codigo, nombre, precio, cantidad) {
+
+            //obtenr la referencia de la tabla detalle
+            let tbldatos = document.getElementById('infodetalle').insertRow(-1);
+            //obtener los indices de las celdas 
+            let col1 = tbldatos.insertCell(0);
+            let col2 = tbldatos.insertCell(1);
+            let col3 = tbldatos.insertCell(2);
+            let col4 = tbldatos.insertCell(3);
+            let col5 = tbldatos.insertCell(4);
+            let col6 = tbldatos.insertCell(5);
+
+            //obtener el subtotal del producto
+            var subtotal = parseFloat(precio) * parseInt(cantidad, 10);
+            console.log(subtotal);
+            //agregar los elementos a la tabla detalle
+            col1.innerHTML = codigo;
+            col2.innerHTML = nombre;
+            col3.innerHTML = precio;
+            col4.innerHTML = cantidad;
+            col5.innerHTML = String(subtotal);
+            col6.innerHTML = "<a class='btn bg-warning d-sm-inline-block btn-baja-detalle' onclick='eliminar()'><i class='feather icon-trash text-white'></i></a>";
+
+        }
+
+        //eventos de la tabla detalle de venta
+        function eliminar() {
+
+            event.target.parentNode.parentNode.remove();
+
+        }
+
+        function Limpiar() {
+            const form = document.getElementById("form-producto");
+            form.reset();
+        }
+
+
+
+    </script>
+}

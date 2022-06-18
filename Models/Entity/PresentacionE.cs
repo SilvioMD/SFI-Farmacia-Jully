@@ -7,8 +7,7 @@ namespace SFI_Farmacia_Jully.Models.Entity
 {
     public class PresentacionE
     {
-        public int Id { get; set; }
+        public int IdPresentacion { get; set; }
         public string Presentacion { get; set; }
-
     }
 }

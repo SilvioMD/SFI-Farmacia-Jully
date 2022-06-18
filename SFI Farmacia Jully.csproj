@@ -126,11 +126,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Action\AccionFarmacologicaA.cs" />
     <Compile Include="Models\Action\CatalogoA.cs" />
     <Compile Include="Models\Action\ClienteA.cs" />
+    <Compile Include="Models\Action\LaboratorioA.cs" />
+    <Compile Include="Models\Action\PresentacionA.cs" />
     <Compile Include="Models\Action\ProductoA.cs" />
     <Compile Include="Models\Action\ProveedorA.cs" />
     <Compile Include="Models\Action\UsuarioA.cs" />
+    <Compile Include="Models\Action\VentasA.cs" />
     <Compile Include="Models\Data\Data.cs" />
     <Compile Include="Models\Entity\AccionFarmacologicaE.cs" />
     <Compile Include="Models\Entity\ClienteE.cs" />
@@ -1839,9 +1843,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Shared\Layout_header.cshtml" />
     <Content Include="Views\Shared\Layout_aside.cshtml" />
@@ -1851,7 +1852,10 @@
     <Content Include="Views\Inventario\AgregarProducto.cshtml" />
     <Content Include="Views\Cliente\AgregarCliente.cshtml" />
     <Content Include="Views\Proveedor\AgregarProveedor.cshtml" />
-    <Content Include="Views\Propiedades\RegistarPropiedades.cshtml" />
+    <Content Include="Views\Inventario\Buscar.cshtml" />
+    <Content Include="Views\Propiedades\RG_propiedades.cshtml" />
+    <Content Include="Views\Propiedades\Rpresentacion.cshtml" />
+    <Content Include="Views\Propiedades\Rpropiedad2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

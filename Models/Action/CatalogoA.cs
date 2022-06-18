@@ -39,7 +39,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                     //llamar la entidad usuario; que contiene los campos de la base de datos
                     LaboratorioE l = new LaboratorioE()
                     {
-                        Id = Convert.ToInt32(dt.Rows[i]["IdLaboratorio"].ToString()),
+                        IdLaboratorio = Convert.ToInt32(dt.Rows[i]["IdLaboratorio"].ToString()),
                         Laboratorio = dt.Rows[i]["Laboratorio"].ToString()
                     };
 
@@ -83,7 +83,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                     //llamar la entidad usuario; que contiene los campos de la base de datos
                     AccionFarmacologicaE a = new AccionFarmacologicaE()
                     {
-                        Id = Convert.ToInt32(dt.Rows[i]["IdAccionFarmacologica"].ToString()),
+                        IdAccionFarmacologica = Convert.ToInt32(dt.Rows[i]["IdAccionFarmacologica"].ToString()),
                         AccionFarmacologica = dt.Rows[i]["AccionFarmacologica"].ToString(),
                         
                     };
@@ -127,7 +127,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                     //llamar la entidad usuario; que contiene los campos de la base de datos
                     PresentacionE p = new PresentacionE()
                     {
-                        Id = Convert.ToInt32(dt.Rows[i]["IdPresentacion"].ToString()),
+                        IdPresentacion = Convert.ToInt32(dt.Rows[i]["IdPresentacion"].ToString()),
                         Presentacion = dt.Rows[i]["Presentacion"].ToString(),
                     };
 

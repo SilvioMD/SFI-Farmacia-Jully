@@ -23,7 +23,7 @@
                                 <div class="page-wrapper">
 
                                     <div class="page-body">
-                                        <!-- task, page, download counter  start -->
+                                        <!-- task, page, download counter  start -->                                                                                                                                               
                                         <div class="card-body">
                                             <div class="row">
 
@@ -42,22 +42,22 @@
                                                 <div class="col">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="registro-docentes"><strong>No. Factura:  </strong><br /></label><br />
-                                                        <h3 class="form-label"><strong>        00001</strong></h3>
+                                                        <h3 class="form-label"><strong id="NoFactura">@ViewBag.NoFactura</strong></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="registro-docentes"><strong>Tipo de pago</strong></label>
-                                                        <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                            <option value="">Efectivo</option>
-                                                            <option value="">Tarjeta de credito/debito</option>
+                                                        <select class="form-control" name="select-cargo" id="select-pago" required>
+                                                            <option value="1">Efectivo</option>
+                                                            <option value="2">Tarjeta de credito/debito</option>
 
                                                         </select>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas">
+                                            <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas" onclick="Limpiar()">
                                                 Agregar Producto
                                             </button>
                                            
@@ -70,7 +70,7 @@
 
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form>
+                                                            <form id="form-producto">
 
                                                                 <div class="row">
 
@@ -203,6 +203,7 @@
                                             <div class="card-body">
                                                 <!--tabla para informacion de cursos -->
                                                 <div class="table-responsive table mt-2" id="tabladetalle" role="grid">
+
                                                     <table class="table my-0" id="infodetalle">
                                                         <thead>
                                                             <tr>
@@ -227,61 +228,6 @@
                                             </div>
 
                                             <form>
-
-                                                <div class="row">
-
-                                                    <div class="col">
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Sub Total: </label>
-                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
-
-                                                    </div>
-
-                                                    <div class="col">
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-
-                                                    <div class="col">
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Descuento:</label>
-                                                        <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
-
-                                                    </div>
-
-                                                    <div class="col">
-
-                                                    </div>
-
-                                                </div>
 
                                                 <div class="row">
 
@@ -329,7 +275,7 @@
                                                     <div class="col">
                                                         <div>
                                                             <br />
-                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button" onclick="mandar_alerta()">
+                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar">
                                                                 <i class="fas fa-shopping-bag"></i>Efectúar Venta
                                                             </a>
 
@@ -377,6 +323,74 @@
 
             });
 
+            $(".efectuar").click(function () {
+
+                console.log("click en guardar");
+                let tabla = document.getElementById('infodetalle');
+                let filas = tabla.getElementsByTagName('tr');
+                let NoFact = document.getElementById('NoFactura'); 
+                let IdTipoPago = document.getElementById('select-pago');
+
+                console.log(filas.length);
+                if (filas.length > 1) {
+
+                    console.log();
+                    var i = 1;
+
+                    let productos = [];
+
+                    for (i = 1; i < filas.length; i++) {
+
+                        let producto = {
+                            "NoFactura": NoFact.innerHTML,
+                            "TipoPago": IdTipoPago.value,
+                            "IdProducto" : filas[i].cells[0].innerHTML,
+                            "Cantidad" : filas[i].cells[3].innerHTML,
+                            "Precio" : filas[i].cells[4].innerHTML
+                        };
+                       
+                        console.log(producto.NoFactura);
+                        console.log(producto.Codigo);
+                        console.log(producto.Cantidad);
+                        console.log(producto.Precio);
+
+                        productos.push(producto);
+
+                    }
+
+                    console.log(productos);
+
+                    var params = JSON.stringify(productos);
+
+                    $.ajax({
+                        type: "POST",
+                        data: params,
+                        url: "/Ventas/GuardarVenta",
+                        contentType: "application/json;charset=utf-8",
+                        success: function (response) {
+
+                            if (response.result == 'Problema') {
+                                alert("Resultado incorrecto");
+                            }
+                            else if (response.result == 'Redirect') {
+                                //redirecting to main page from here for the time being.
+                                alert("Venta agregada");
+                                window.location = response.url;
+                            }
+                        },
+                        error: function (xhr, thrownError) {
+                            console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                        }
+                    });
+
+                } else {
+                    alert("no hay productos agregados");
+                }
+
+                
+
+            });
+
             //evento para agregar producto a la tabla detalle
             $("#btn-agregar-producto").click(function () {
 
@@ -388,33 +402,27 @@
                 var cantidad = document.getElementById('cantidad-vendida').value;
 
                 if (codigo !== "" || nombre !== "" || precio !== "" || cantidad !== "") {
-                    Insertar(codigo, nombre, precio, cantidad);
+
+                    if (parseInt(cantidad) <= parseInt(document.getElementById('cantidad-actual').value)) {
+                        Insertar(codigo, nombre, precio, cantidad);
+                    } else if (parseInt(cantidad) <= 0) {
+                        alert("la cantidad debe ser mayor a 0");
+                    } else {
+
+                        alert("no existe la cantidad que se desea vender");
+                    }
+                    
                 } else {
-                    console.log("no se puede agregar");
+                    alert("no se puede agregar");
                 }
                 
-
-            });
-
-
-            //eventso de la tabla detalle de venta
-            $("#infodetalle tr td .btnEditar").click(function () {
-
-                console.log("dentro de editar");
-
-            });
-
-            $("#infodetalle tr td .btn-baja").click(function () {
-
-                console.log("dentro de baja");
-
             });
 
             //evento de la tabla de busqueda de productos
             $("#InfoProducto tr td .btnAgregar").click(function () {
 
                 
-                $("#codigo").val($(this).parent().parent().children()[1].innerHTML);
+                $("#codigo").val($(this).parent().parent().children()[0].innerHTML);
                 $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
                 $("#precio").val($(this).parent().parent().children()[7].innerHTML);
                 $("#cantidad-actual").val($(this).parent().parent().children()[8].innerHTML);
@@ -426,7 +434,7 @@
         function Insertar(codigo, nombre, precio, cantidad) {
 
             //obtenr la referencia de la tabla detalle
-            let tbldatos = document.getElementById('infodetalle').insertRow(1);
+            let tbldatos = document.getElementById('infodetalle').insertRow(-1);
             //obtener los indices de las celdas 
             let col1 = tbldatos.insertCell(0);
             let col2 = tbldatos.insertCell(1);
@@ -444,10 +452,33 @@
             col3.innerHTML = precio;
             col4.innerHTML = cantidad;
             col5.innerHTML = String(subtotal);
-            col6.innerHTML = "<a class='btn btn-primary d-none d-sm-inline-block btnEditar'><i class='feather icon-edit-1 text-white'></i></a>" + " " + "<a class='btn bg-warning d-sm-inline-block btn-baja' ><i class='feather icon-trash text-white'></i></a>";
+            col6.innerHTML = "<a class='btn bg-warning d-sm-inline-block btn-baja-detalle' onclick='eliminar()'><i class='feather icon-trash text-white'></i></a>";
 
         }
 
+        //eventso de la tabla detalle de venta
+
+        function editar() {
+            
+            console.log("dentro de editar");
+            let tabla = document.getElementById('infodetalle');
+            let elemento = tabla.getElementsByTagName("td");
+            console.log(elemento[0].innerHTML);
+
+        }
+
+        function eliminar() {
+            
+            event.target.parentNode.parentNode.remove();
+
+        }
+
+        function Limpiar() {
+            const form = document.getElementById("form-producto");
+            form.reset();
+        }
+
+       
 
     </script>
 }

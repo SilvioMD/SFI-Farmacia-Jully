@@ -14,8 +14,10 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public DateTime Fecha { get; set; }
 
         //detalle venta
+        public string Codigo { get; set; }
         public int IdProducto { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
+
     }
 }

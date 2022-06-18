@@ -20,6 +20,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             {
                 new SqlParameter("@TIPO", 3)
             };
+
             //cadena de la consulta
             string sql = "SP_Productos";
 

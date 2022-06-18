@@ -55,7 +55,7 @@ namespace SFI_Farmacia_Jully.Controllers
         public ActionResult Baja(string IdProveedor)
         {
            
-           if (ProveedorA.Baja(IdProveedor) == false)
+            if (ProveedorA.Baja(IdProveedor) == false)
             {
                 return Json(new { result = "ProblemaBaja" }, JsonRequestBehavior.AllowGet);
             }
