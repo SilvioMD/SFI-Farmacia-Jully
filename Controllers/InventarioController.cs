@@ -10,9 +10,9 @@ namespace SFI_Farmacia_Jully.Controllers
         public ActionResult AgregarProducto()
         {
 
-            ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "Id", "Laboratorio");
-            ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "Id", "AccionFarmacologica");
-            ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "Id", "Presentacion");
+            ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "IdLaboratorio", "Laboratorio");
+            ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
+            ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "IdPresentacion", "Presentacion");
             return View(ProductoA.Listar());
         }
 
