@@ -129,6 +129,7 @@
     <Compile Include="Models\Action\AccionFarmacologicaA.cs" />
     <Compile Include="Models\Action\CatalogoA.cs" />
     <Compile Include="Models\Action\ClienteA.cs" />
+    <Compile Include="Models\Action\CompraA.cs" />
     <Compile Include="Models\Action\LaboratorioA.cs" />
     <Compile Include="Models\Action\PresentacionA.cs" />
     <Compile Include="Models\Action\ProductoA.cs" />
@@ -138,7 +139,7 @@
     <Compile Include="Models\Data\Data.cs" />
     <Compile Include="Models\Entity\AccionFarmacologicaE.cs" />
     <Compile Include="Models\Entity\ClienteE.cs" />
-    <Compile Include="Models\Entity\Compra.cs" />
+    <Compile Include="Models\Entity\CompraE.cs" />
     <Compile Include="Models\Entity\LaboratorioE.cs" />
     <Compile Include="Models\Entity\PersonaEcs.cs" />
     <Compile Include="Models\Entity\PresentacionE.cs" />

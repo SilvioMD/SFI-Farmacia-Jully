@@ -66,6 +66,7 @@ namespace SFI_Farmacia_Jully.Models.Data
 
                 dt.Columns.Add("error");
                 dt.Columns.Add(e.Message);
+                
             }
 
             return result;

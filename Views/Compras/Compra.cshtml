@@ -34,16 +34,16 @@
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
-                                                <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
+                                                <input class="form-control" id="NoFact" name="pnombre-docente" value="" required />
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
-                                                <select class="form-control" name="select-cargo" id="select-cargo-docente" required>
-                                                    <option value="">Ramos</option>
-                                                    <option value="">Solka</option>
-                                                    <option value="">Bayer</option>
+                                                <select class="form-control" name="select" id="select-proveedor" required>
+                                                    <option value="1">Ramos</option>
+                                                    <option value="2">Solka</option>
+                                                    <option value="3">Bayer</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -62,8 +62,8 @@
                                         </div>
                                         <div class="card-body">
                                             <!--tabla para informacion de cursos -->
-                                            <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
-                                                <table class="table my-0" id="infoCurso">
+                                            <div class="table-responsive table mt-2" role="grid">
+                                                <table class="table my-0" id="tabladetalle">
                                                     <thead>
                                                         <tr>
                                                             <th>Codigo</th>
@@ -72,48 +72,17 @@
                                                             <th>Cantidad</th>
                                                             <th>Valor</th>
                                                             <th>Acciones</th>
+                                                            <th style="visibility:collapse; display:none;">Vencimiento</th>
+                                                            <th style="visibility:collapse; display:none;">Cambio Precio</th>
                                                         </tr>
                                                     </thead>
 
                                                     <tbody>
-                                                        <!--cuerpo de la tabla-->
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
 
-                                                            <td>
-                                                                
-                                                                <a class="btn bg-warning d-sm-inline-block">
-                                                                    <i class="feather icon-trash text-white"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
+                                                      
                                                     </tbody>
 
                                                 </table>
-
-                                                <!--barra navegacion entre tabla-->
-                                                <div class="row">
-                                                    <div class="col-md-6 align-self-center">
-                                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 5 </p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                                            <ul class="pagination">
-                                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
-
-                                                </div>
 
                                             </div>
                                         </div>
@@ -221,7 +190,7 @@
                                                 <div class="col">
                                                     <div>
                                                         <br />
-                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white" role="button" onclick="mandar_alerta()">
+                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar" role="button">
                                                             <i class="fas fa-shopping-bag"></i>Guardar Compra
                                                         </a>
 
@@ -273,20 +242,116 @@
 
                     $("#codigo").val($(this).parent().parent().children()[0].innerHTML);
                     $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
-                    $("#precio").val($(this).parent().parent().children()[6].innerHTML);
-                    $("#cantidad-actual").val($(this).parent().parent().children()[7].innerHTML);
+                    $("#cambio-precio").val($(this).parent().parent().children()[6].innerHTML);
 
+                    
                 });
 
             });
 
-            
+
+            //evento para agregar producto a la tabla detalle
+            $("#btn-agregar-producto").click(function () {
+
+                console.log("dentro de insertar");
+                var codigo = document.getElementById('codigo').value;
+                var nombre = document.getElementById('nombre').value;
+                var precio = document.getElementById('precio').value; 
+                var cambioprecio = document.getElementById('cambio-precio').value;
+                var cantidad = document.getElementById('cantidad-vendida').value;
+
+                var vencimiento = document.getElementById('vencimiento').value;
+                
+                console.log(cantidad);
+                if (codigo !== "" && nombre !== "" && precio !== "" && cantidad !== "" && cambioprecio !== "") {
+
+                    if (parseInt(cantidad) <= 0) {
+                        alert("la cantidad debe ser mayor a 0");
+                    } else {
+
+                        Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento);
+                    }
+
+                } else {
+                    alert("no se puede agregar");
+                }
+
+            });
+
+            $(".efectuar").click(function () {
+
+                
+                let tabla = document.getElementById('tabladetalle');
+                let filas = tabla.getElementsByTagName('tr');
+                let NoFact = document.getElementById('NoFact').value;
+                let Idproveedor = document.getElementById('select-proveedor');
+                
+                if (NoFact !== "") {
+
+                    if (filas.length > 1) {
+
+                        console.log();
+                        var i = 1;
+
+                        let productos = [];
+                        console.log(filas[i].cells[7].innerHTML);
+                        for (i = 1; i < filas.length; i++) {
+
+                            let producto = {
+                                "NoFactura": NoFact,
+                                "IdProveedor": Idproveedor.value,
+                                "IdMedicamento": filas[i].cells[0].innerHTML,
+                                "Cantidad": filas[i].cells[3].innerHTML,
+                                "Precio": filas[i].cells[6].innerHTML,
+                                "PrecioCompra": filas[i].cells[2].innerHTML,
+                                "FechaVenc": filas[i].cells[7].innerHTML,
+                            };
+
+                           
+                            productos.push(producto);
+
+                        }
+
+                        console.log(productos);
+
+                        var params = JSON.stringify(productos);
+
+                        $.ajax({
+                            type: "POST",
+                            data: params,
+                            url: "/Compras/GuardarCompra",
+                            contentType: "application/json;charset=utf-8",
+                            success: function (response) {
+
+                                if (response.result == 'Problema') {
+                                    alert("Resultado incorrecto");
+                                }
+                                else if (response.result == 'Redirect') {
+                                    //redirecting to main page from here for the time being.
+                                    alert("Venta agregada");
+                                    window.location = response.url;
+                                }
+                            },
+                            error: function (xhr, thrownError) {
+                                console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                            }
+                        });
+
+                    } else {
+                        alert("no hay productos agregados");
+                    }
+                } else {
+                    alert("agrege el codigo de la factura");
+                }
+
+            });
+
         });
 
-        function Insertar(codigo, nombre, precio, cantidad) {
+       function Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento) {
 
             //obtenr la referencia de la tabla detalle
-            let tbldatos = document.getElementById('infodetalle').insertRow(-1);
+            let tbldatos = document.getElementById('tabladetalle').insertRow(-1);
             //obtener los indices de las celdas 
             let col1 = tbldatos.insertCell(0);
             let col2 = tbldatos.insertCell(1);
@@ -294,6 +359,8 @@
             let col4 = tbldatos.insertCell(3);
             let col5 = tbldatos.insertCell(4);
             let col6 = tbldatos.insertCell(5);
+            let col7 = tbldatos.insertCell(6);
+            let col8 = tbldatos.insertCell(7);
 
             //obtener el subtotal del producto
             var subtotal = parseFloat(precio) * parseInt(cantidad, 10);
@@ -305,7 +372,11 @@
             col4.innerHTML = cantidad;
             col5.innerHTML = String(subtotal);
             col6.innerHTML = "<a class='btn bg-warning d-sm-inline-block btn-baja-detalle' onclick='eliminar()'><i class='feather icon-trash text-white'></i></a>";
+            col7.innerHTML = cambioprecio;
+            col8.innerHTML = vencimiento;
 
+            col7.className = 'visibilidad';
+            col8.className = 'visibilidad';
         }
 
         //eventos de la tabla detalle de venta
