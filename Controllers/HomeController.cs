@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using SFI_Farmacia_Jully.Models.Action;
+
 
 namespace SFI_Farmacia_Jully.Controllers
 {
@@ -11,13 +10,27 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Home
         public ActionResult Dashboard()
         {
-            return View();
+
+            if (Session["UsuarioLogeado"] != null)
+            {
+                ViewBag.Ventas = DashboardA.ObtenerInfo(1);
+                ViewBag.Compras = DashboardA.ObtenerInfo(2);
+                ViewBag.Inventario = DashboardA.ObtenerInfo(3);
+                ViewBag.Fecha = DateTime.Now;
+
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View();
+                
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            
+
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        } 
 
     }
 }

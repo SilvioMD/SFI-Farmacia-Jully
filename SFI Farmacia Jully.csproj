@@ -47,10 +47,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -106,6 +125,7 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -116,12 +136,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\PropiedadesController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,10 +152,12 @@
     <Compile Include="Models\Action\CatalogoA.cs" />
     <Compile Include="Models\Action\ClienteA.cs" />
     <Compile Include="Models\Action\CompraA.cs" />
+    <Compile Include="Models\Action\DashboardA.cs" />
     <Compile Include="Models\Action\LaboratorioA.cs" />
     <Compile Include="Models\Action\PresentacionA.cs" />
     <Compile Include="Models\Action\ProductoA.cs" />
     <Compile Include="Models\Action\ProveedorA.cs" />
+    <Compile Include="Models\Action\ReportesA.cs" />
     <Compile Include="Models\Action\UsuarioA.cs" />
     <Compile Include="Models\Action\VentasA.cs" />
     <Compile Include="Models\Data\Data.cs" />
@@ -167,6 +191,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\estilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="files\alertifyjs_2\alertify.js" />
     <Content Include="files\alertifyjs_2\alertify.min.js" />
@@ -481,76 +506,8 @@
     <Content Include="files\assets\icon\weather-icons\fonts\weathericons-regular-webfont.hxd" />
     <Content Include="files\assets\icon\weather-icons\fonts\weathericons-regular-webfont.svg" />
     <Content Include="files\assets\icon\weather-icons\weather-custom.js" />
-    <Content Include="files\assets\images\animate.jpg" />
-    <Content Include="files\assets\images\auth\bg.jpg" />
-    <Content Include="files\assets\images\auth\Logo-small-bottom.png" />
-    <Content Include="files\assets\images\auth\logo.png" />
-    <Content Include="files\assets\images\avatar-1.jpg" />
-    <Content Include="files\assets\images\avatar-2.jpg" />
-    <Content Include="files\assets\images\avatar-3.jpg" />
-    <Content Include="files\assets\images\avatar-4.jpg" />
-    <Content Include="files\assets\images\avatar-5.jpg" />
-    <Content Include="files\assets\images\avatar-6.jpg" />
-    <Content Include="files\assets\images\avatar-7.jpg" />
-    <Content Include="files\assets\images\breadcrumb-bg.jpg" />
-    <Content Include="files\assets\images\browser\chrome.png" />
-    <Content Include="files\assets\images\browser\firefox.png" />
-    <Content Include="files\assets\images\browser\ie.png" />
-    <Content Include="files\assets\images\browser\opera.png" />
-    <Content Include="files\assets\images\browser\safari.png" />
-    <Content Include="files\assets\images\card-block\card1.jpg" />
-    <Content Include="files\assets\images\card-block\card13.jpg" />
-    <Content Include="files\assets\images\card-block\card14.jpg" />
-    <Content Include="files\assets\images\card-block\card2.jpg" />
-    <Content Include="files\assets\images\chat-bg.jpg" />
-    <Content Include="files\assets\images\commingsoon\cs-1.jpg" />
-    <Content Include="files\assets\images\commingsoon\cs-2.jpg" />
-    <Content Include="files\assets\images\complete.png" />
-    <Content Include="files\assets\images\details_close.png" />
-    <Content Include="files\assets\images\details_open.png" />
-    <Content Include="files\assets\images\e-payment\card\amex.jpg" />
-    <Content Include="files\assets\images\e-payment\card\mastercard.jpg" />
-    <Content Include="files\assets\images\e-payment\card\visa.jpg" />
-    <Content Include="files\assets\images\error\error-1.jpg" />
-    <Content Include="files\assets\images\error\error-2.jpg" />
-    <Content Include="files\assets\images\error\error-3.jpg" />
-    <Content Include="files\assets\images\error\error-4.jpg" />
-    <Content Include="files\assets\images\error\error-5.jpg" />
-    <Content Include="files\assets\images\error\error-6.jpg" />
-    <Content Include="files\assets\images\favicon.ico" />
-    <Content Include="files\assets\images\gallery-grid\1.png" />
-    <Content Include="files\assets\images\gallery-grid\masonry-1.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-2.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-3.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-4.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-5.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-6.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-7.jpg" />
-    <Content Include="files\assets\images\gallery-grid\masonry-8.jpg" />
-    <Content Include="files\assets\images\light-box\l1.jpg" />
-    <Content Include="files\assets\images\light-box\l2.jpg" />
-    <Content Include="files\assets\images\light-box\l3.jpg" />
-    <Content Include="files\assets\images\light-box\l4.jpg" />
-    <Content Include="files\assets\images\light-box\l5.jpg" />
-    <Content Include="files\assets\images\light-box\l6.jpg" />
-    <Content Include="files\assets\images\light-box\mixin.jpg" />
-    <Content Include="files\assets\images\light-box\sl1.jpg" />
-    <Content Include="files\assets\images\light-box\sl2.jpg" />
-    <Content Include="files\assets\images\light-box\sl3.jpg" />
-    <Content Include="files\assets\images\light-box\sl4.jpg" />
-    <Content Include="files\assets\images\light-box\sl5.jpg" />
-    <Content Include="files\assets\images\light-box\sl6.jpg" />
-    <Content Include="files\assets\images\light-box\smixin.jpg" />
-    <Content Include="files\assets\images\light-box\v1.jpg" />
-    <Content Include="files\assets\images\light-box\v2.jpg" />
-    <Content Include="files\assets\images\light-box\v3.jpg" />
-    <Content Include="files\assets\images\light-box\v4.jpg" />
-    <Content Include="files\assets\images\logo-blue.png" />
-    <Content Include="files\assets\images\logo.png" />
-    <Content Include="files\assets\images\mega-menu\01.jpg" />
-    <Content Include="files\assets\images\mega-menu\02.jpg" />
-    <Content Include="files\assets\images\mega-menu\03.jpg" />
-    <Content Include="files\assets\images\modal\overflow.jpg" />
+    <Content Include="files\assets\images\Logo_comp.png" />
+    <Content Include="files\assets\images\Logo_fig.png" />
     <Content Include="files\assets\images\navbar\nav1.jpg" />
     <Content Include="files\assets\images\navbar\nav10.jpg" />
     <Content Include="files\assets\images\navbar\nav2.jpg" />
@@ -561,88 +518,7 @@
     <Content Include="files\assets\images\navbar\nav7.jpg" />
     <Content Include="files\assets\images\navbar\nav8.jpg" />
     <Content Include="files\assets\images\navbar\nav9.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-1.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-2.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-3.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-4.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-5.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-6.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-l-7.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-1.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-2.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-3.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-4.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-5.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-6.jpg" />
-    <Content Include="files\assets\images\product-detail\pro-d-s-7.jpg" />
-    <Content Include="files\assets\images\product-edit\product-edit1.jpg" />
-    <Content Include="files\assets\images\product-edit\product-edit2.jpg" />
-    <Content Include="files\assets\images\product-edit\product-edit3.jpg" />
-    <Content Include="files\assets\images\product-list\pro-l1.png" />
-    <Content Include="files\assets\images\product-list\pro-l2.png" />
-    <Content Include="files\assets\images\product-list\pro-l3.png" />
-    <Content Include="files\assets\images\product-list\pro-l4.png" />
-    <Content Include="files\assets\images\product-list\pro-l5.png" />
-    <Content Include="files\assets\images\product-list\pro-l6.png" />
-    <Content Include="files\assets\images\product-list\pro-l7.png" />
-    <Content Include="files\assets\images\product-list\pro-l8.png" />
-    <Content Include="files\assets\images\product-list\pro-l9.png" />
-    <Content Include="files\assets\images\product\p1.jpg" />
-    <Content Include="files\assets\images\product\p2.jpg" />
-    <Content Include="files\assets\images\product\p3.jpg" />
-    <Content Include="files\assets\images\product\p4.jpg" />
-    <Content Include="files\assets\images\search-images\01.jpg" />
-    <Content Include="files\assets\images\search-images\02.jpg" />
-    <Content Include="files\assets\images\search-images\03.jpg" />
-    <Content Include="files\assets\images\search-images\04.jpg" />
-    <Content Include="files\assets\images\search-images\05.jpg" />
-    <Content Include="files\assets\images\search-images\06.jpg" />
-    <Content Include="files\assets\images\select-arrow.png" />
-    <Content Include="files\assets\images\slider\slide1.jpg" />
-    <Content Include="files\assets\images\slider\slide2.jpg" />
-    <Content Include="files\assets\images\slider\slide3.jpg" />
-    <Content Include="files\assets\images\slider\slide4.jpg" />
-    <Content Include="files\assets\images\slider\slider5.jpg" />
-    <Content Include="files\assets\images\slider\slider6.jpg" />
-    <Content Include="files\assets\images\slider\slider7.jpg" />
-    <Content Include="files\assets\images\social\img1.jpg" />
-    <Content Include="files\assets\images\social\profile.jpg" />
-    <Content Include="files\assets\images\task\task-u1.jpg" />
-    <Content Include="files\assets\images\task\task-u2.jpg" />
-    <Content Include="files\assets\images\task\task-u3.jpg" />
-    <Content Include="files\assets\images\task\task-u4.jpg" />
-    <Content Include="files\assets\images\timeline\img1.jpg" />
-    <Content Include="files\assets\images\timeline\img2.png" />
-    <Content Include="files\assets\images\tooltip\Euclid.png" />
-    <Content Include="files\assets\images\tooltip\shape1.svg" />
-    <Content Include="files\assets\images\tooltip\tooltip1.svg" />
-    <Content Include="files\assets\images\user-card\img-round1.jpg" />
-    <Content Include="files\assets\images\user-card\img-round2.jpg" />
-    <Content Include="files\assets\images\user-card\img-round3.jpg" />
-    <Content Include="files\assets\images\user-card\img-round4.jpg" />
-    <Content Include="files\assets\images\user-card\inverse-img1.jpg" />
-    <Content Include="files\assets\images\user-card\inverse-img2.jpg" />
-    <Content Include="files\assets\images\user-profile\bg-img1.jpg" />
-    <Content Include="files\assets\images\user-profile\follower\f-1.jpg" />
-    <Content Include="files\assets\images\user-profile\follower\f-2.jpg" />
-    <Content Include="files\assets\images\user-profile\follower\f-3.jpg" />
-    <Content Include="files\assets\images\user-profile\follower\f-4.jpg" />
-    <Content Include="files\assets\images\user-profile\follower\f-5.jpg" />
-    <Content Include="files\assets\images\user-profile\user-img.jpg" />
     <Content Include="files\assets\images\user.png" />
-    <Content Include="files\assets\images\widget\AUSTRALIA.jpg" />
-    <Content Include="files\assets\images\widget\BRAZIL.jpg" />
-    <Content Include="files\assets\images\widget\GERMANY.jpg" />
-    <Content Include="files\assets\images\widget\icon-1.png" />
-    <Content Include="files\assets\images\widget\icon-2.png" />
-    <Content Include="files\assets\images\widget\icon-3.png" />
-    <Content Include="files\assets\images\widget\icon-4.png" />
-    <Content Include="files\assets\images\widget\UK.jpg" />
-    <Content Include="files\assets\images\widget\USA.jpg" />
-    <Content Include="files\assets\images\widget\watherbottom.png" />
-    <Content Include="files\assets\images\widget\wathernature.png" />
-    <Content Include="files\assets\images\widget\watherstar1.png" />
-    <Content Include="files\assets\images\widget\watherstar2.png" />
     <Content Include="files\assets\js\animation.js" />
     <Content Include="files\assets\js\bootstrap-growl.min.js" />
     <Content Include="files\assets\js\classie.js" />
@@ -1437,11 +1313,6 @@
     <Content Include="files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js" />
     <Content Include="files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js" />
     <Content Include="files\bower_components\datatables.net\js\jquery.dataTables.min.js" />
-    <Content Include="files\bower_components\datedropper\css\datedropper.min.css" />
-    <Content Include="files\bower_components\datedropper\css\dd-icon\dd-icon-1.hxd" />
-    <Content Include="files\bower_components\datedropper\css\dd-icon\dd-icon.hxd" />
-    <Content Include="files\bower_components\datedropper\css\dd-icon\dd-icon.svg" />
-    <Content Include="files\bower_components\datedropper\js\datedropper.min.js" />
     <Content Include="files\bower_components\font-awesome\css\font-awesome.min.css" />
     <Content Include="files\bower_components\font-awesome\fonts\fontawesome-webfont-1.hxd" />
     <Content Include="files\bower_components\font-awesome\fonts\fontawesome-webfont.hxd" />
@@ -1480,9 +1351,6 @@
     <Content Include="files\bower_components\popper.js\js\popper.min.js" />
     <Content Include="files\bower_components\select2\css\select2.min.css" />
     <Content Include="files\bower_components\select2\js\select2.full.min.js" />
-    <Content Include="files\bower_components\slick-carousel\css\slick-theme.css" />
-    <Content Include="files\bower_components\slick-carousel\css\slick.css" />
-    <Content Include="files\bower_components\slick-carousel\js\slick.min.js" />
     <Content Include="files\bower_components\stroll\css\stroll.css" />
     <Content Include="files\bower_components\stroll\js\stroll.js" />
     <Content Include="files\bower_components\sweetalert\css\sweetalert.css" />
@@ -1712,8 +1580,6 @@
     <Content Include="files\assets\scss\partials\_mixins.scss" />
     <Content Include="files\assets\scss\partials\_variables.scss" />
     <Content Include="files\assets\scss\style.scss" />
-    <Content Include="files\bower_components\datedropper\css\dd-icon\dd-icon.ttf" />
-    <Content Include="files\bower_components\datedropper\css\dd-icon\dd-icon.woff" />
     <Content Include="files\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="files\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="files\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
@@ -1760,6 +1626,9 @@
     <Content Include="Views\Propiedades\RG_propiedades.cshtml" />
     <Content Include="Views\Propiedades\Rpresentacion.cshtml" />
     <Content Include="Views\Propiedades\Rpropiedad2.cshtml" />
+    <Content Include="Views\Reportes\RepCompras.cshtml" />
+    <Content Include="Views\Reportes\RepVentas.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

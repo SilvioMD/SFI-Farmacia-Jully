@@ -23,7 +23,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                 new SqlParameter("name", name)
             };
             //cadena de la consulta
-            string sql = "SELECT TOP 1 * FROM TblCatUsuario WHERE Usuario like @name";
+            string sql = "SELECT TOP 1 * FROM TblCatEmpleado WHERE Usuario like @name";
 
 
             //crear data table para almacenar los datos
@@ -32,9 +32,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
             if (dt.Rows.Count > 0)
             {
-                u.Id = Convert.ToInt32(dt.Rows[0]["IdUsuario"].ToString());
-                u.Nombre = dt.Rows[0]["Nombres"].ToString();
-                u.Apellidos = dt.Rows[0]["Apellidos"].ToString();
+                u.Id = Convert.ToInt32(dt.Rows[0]["IdEmpleado"].ToString());
                 u.Usuario = dt.Rows[0]["Usuario"].ToString();
                 u.Contraseña = dt.Rows[0]["Contraseña"].ToString();
                 u.Cargo = int.Parse(dt.Rows[0]["IdRol"].ToString());

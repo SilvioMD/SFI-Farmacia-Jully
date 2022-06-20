@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<body class="p-2 text-white ">
+    <div class="loginBox">
+        <img class="user" src="~/files/assets/images/Logo_comp.png" height="100px" width="100px"/>
+
+        
+        <form action="~/Auth/Authentication" method="post">
+            <div class="inputBox">
+                <input id="uname" type="text" name="usuario" placeholder="Usuario">
+                <input id="pass" type="password" name="contraseña" placeholder="Contraseña" required>
+            </div>
+            <input type="submit" name="" value="Login">
+        </form>
+       
+        <div class="text-center">
+            <label style="color: #59238F;" class="btn-block text-center"><b>@ViewBag.Notification</b> </label>
+            
+        </div>
+
+    </div>
+
+
+</body>

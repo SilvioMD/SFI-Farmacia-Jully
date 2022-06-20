@@ -9,11 +9,21 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Inventario
         public ActionResult AgregarProducto()
         {
+            if (Session["UsuarioLogeado"] != null)
+            {
+                ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "IdLaboratorio", "Laboratorio");
+                ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
+                ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "IdPresentacion", "Presentacion");
 
-            ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "IdLaboratorio", "Laboratorio");
-            ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
-            ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "IdPresentacion", "Presentacion");
-            return View(ProductoA.Listar());
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View(ProductoA.Listar());
+                
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+           
         }
 
         public ActionResult Buscar()

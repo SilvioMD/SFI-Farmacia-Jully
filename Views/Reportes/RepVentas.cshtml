@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "RepVentas";
+}
+
+
+
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <!-- task, page, download counter  start -->
+
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+
+                                                <div class="card shadow-sm">
+                                                    <div class="card-header">
+                                                        <h5>Descarga excel con estadisticas de las ventas.</h5>
+                                                    </div>
+                                                    <div class="card-body">
+
+                                                        <form action="@Url.Action("ExportarVentas","Reportes")" method="post">
+                                                            <div class="form-row align-items-end">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="form-text">Fecha Inicio</label>
+                                                                    <input type="date" class="form-control" name="fechainicio" />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="form-text">Fecha Fin</label>
+                                                                    <input type="date" class="form-control" name="fechafin" />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn btn-success btn-block" type="submit">Descargar</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
