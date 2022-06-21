@@ -1,5 +1,6 @@
 ﻿using SFI_Farmacia_Jully.Models.Action;
 using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
@@ -9,7 +10,7 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Inventario
         public ActionResult AgregarProducto()
         {
-            if (Session["UsuarioLogeado"] != null)
+            /*if (Session["UsuarioLogeado"] != null)
             {
                 ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "IdLaboratorio", "Laboratorio");
                 ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
@@ -22,8 +23,23 @@ namespace SFI_Farmacia_Jully.Controllers
             else
             {
                 return RedirectToAction("Login", "Auth");
-            }
-           
+            }*/
+            ViewBag.CboLaboratorio = new SelectList(CatalogoA.ListarLab(), "IdLaboratorio", "Laboratorio");
+            ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
+            ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "IdPresentacion", "Presentacion");
+
+            
+            return View(ProductoA.Listar());
+        }
+
+        public JsonResult Listar()
+        {
+            return Json(new { data = ProductoA.Listar() }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DatosEditar(string Codigo)
+        {
+            return Json(new { data = ProductoA.ProductoAEditar(Convert.ToInt32(Codigo))}, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Buscar()
@@ -32,27 +48,11 @@ namespace SFI_Farmacia_Jully.Controllers
         }
 
         [HttpPost]
-        public ActionResult Agregar(string NombreProducto,string Tipo,string UnidadMedida,string descripcion, string Precio, string CantDisp, string CantMinima,string CboLaboratorio, string CboAccionFarm, string CboPresentacion)
+        public JsonResult Agregar(ProductoE p)
         {
+           
+            return Json(new { result = ProductoA.Insert(p) }, JsonRequestBehavior.AllowGet);
 
-            ProductoE p;
-            p = new ProductoE
-            {
-                Nombre = NombreProducto,
-                TipoPoducto = int.Parse(Tipo),
-                UnidadMedida = UnidadMedida,
-                Descripcion = descripcion,
-                Precio = decimal.Parse(Precio),
-                CantidadDisponible = int.Parse(CantDisp),
-                CantidadMinima = int.Parse(CantMinima),
-                IdLaboratorio = int.Parse(CboLaboratorio),
-                IdAccionFarmacologica = int.Parse(CboAccionFarm),
-                IdPresentacion = int.Parse(CboPresentacion)
-            };
-
-            ProductoA.Insert(p);
-
-            return Redirect("~/Inventario/AgregarProducto");
         }
 
         [HttpPost]

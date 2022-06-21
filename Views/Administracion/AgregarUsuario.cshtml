@@ -1,0 +1,209 @@
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.AdministracionE>
+@{
+    ViewBag.Title = "AgregarUsuario";
+}
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="card-body">
+
+                                        <form action="~/Administracion/Agregar" method="post">
+                                            <div class="row">
+
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+
+                                                        <label class="form-label" for="registro-docentes"><strong>Tipo de Rol</strong></label>
+                                                        <select class="form-control" name="Tipo" id="select-cargo-docente" required>
+                                                            <option value="2">Farmaceutico</option>
+                                                            <option value="1">Administrador</option>
+
+                                                        </select>
+                                                        <input type="hidden" id="codigo-Empleado" name="IdEmpleado" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-header py-3">
+                                                <p class="text-primary m-0 fw-bold">Datos de producto</p>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Primer Nombre</strong><br /></label>
+                                                        <input class="form-control" id="PNombre" name="PNombre" required />
+                                                        <br>
+                                                        <label class="form-label" for="registro-docentes"><strong>Primer Apellido</strong><br /></label>
+                                                        <br>
+                                                        <input class="form-control" id="PApellido" name="PApellido" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Segundo Nombre</strong><br /></label>
+                                                        <input class="form-control" id="SNombre" name="SNombre" required />
+                                                        <br>
+                                                        <label class="form-label" for="registro-docentes"><strong>Segundo Apellido</strong><br /></label>
+                                                        <input class="form-control" id="SApellido" name="SApellido" required />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Celular</strong></label>
+                                                        <input class="form-control" id="Celular" name="Celular" required />
+                                                        <br>
+                                                        <label class="form-label" for="registro-docentes"><strong>Clave de recuperacion</strong></label>
+                                                        <input class="form-control" id="ClaR" name="ClaR" required />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Usuario </strong><br /></label>
+                                                        <input class="form-control" id="Usuario" name="Usuario" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Contraseña</strong><br /></label>
+                                                        <input class="form-control" id="Contraseña" name="Contraseña" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+
+                                                </div>
+                                                <div class="col">
+
+                                                </div>
+                                                <div class="col">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar Usuario</button></div>
+
+
+
+
+                                        </form>
+                                    </div>
+
+                                    <div class="card-shadow mb-5">
+                                        <div class="card-header py-3">
+                                            <h6 class="text-primary fw-bold m-0">Lista de productos</h6>
+                                        </div>
+                                        <div class="card-body">
+
+
+                                            <!--tabla para informacion de cursos -->
+                                            <div class="table-responsive table mt-2" id="tabla" role="grid">
+
+
+                                                <table class="table my-0" id="InfoUsuario">
+
+                                                    <thead class="align-center">
+
+                                                        <tr>
+                                                            <th>Codigo Usuario</th>
+                                                            <th>P.Nombre</th>
+                                                            <th>S.Nombre</th>
+                                                            <th>P.Apellido</th>
+                                                            <th>S.Apellido</th>
+                                                            <th>NoTelefono</th>
+                                                            <th>Usuario</th>
+                                                            <th>Contraseña</th>
+                                                            <th>Clave de Recuperacion</th>
+                                                            <th>Rol</th>
+
+                                                        </tr>
+
+                                                    </thead>
+
+                                                    <tbody>
+
+                                                        @foreach (var datos in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@datos.IdEmpleado</td>
+                                                                <td>@datos.PNombre </td>
+                                                                <td>@datos.Snombre</td>
+                                                                <td>@datos.PApellido</td>
+                                                                <td>@datos.SApellido</td>
+                                                                <td>@datos.Celular</td>
+                                                                <td>@datos.Usuario</td>
+                                                                <td>@datos.Contraseña</td>
+                                                                <td>@datos.ClaveRec</td>
+                                                                <td>@datos.Rol</td>
+
+                                                                <td>
+                                                                    <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                        <i class="feather icon-edit-1 text-white"></i>
+
+                                                                    </a>
+                                                                    <a class="btn bg-warning d-sm-inline-block text-white btn-baja" data-index="">
+                                                                        <i class="feather icon-trash text-white"></i>
+
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+
+                                                        }
+
+                                                    </tbody>
+
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+

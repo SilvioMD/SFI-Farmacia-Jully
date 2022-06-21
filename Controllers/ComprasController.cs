@@ -11,7 +11,19 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Compras
         public ActionResult Compra()
         {
-            return View(ProductoA.Listar());
+            if (Session["UsuarioLogeado"] != null)
+            {
+                
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View(ProductoA.Listar());
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            
         }
 
         [HttpPost]

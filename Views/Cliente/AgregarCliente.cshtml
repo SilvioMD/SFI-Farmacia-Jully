@@ -3,7 +3,6 @@
     ViewBag.Title = "AgregarCliente";
 }
 
-
 <body>
 
     <!-- Pre-loader end -->
@@ -185,7 +184,6 @@
 </body>
 
 
-
 @section scripts{
 
     <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
@@ -236,7 +234,13 @@
                         console.log("datso incorrectos para dar baja al cliente");
                     }
                     else if (response.result == 'Redirect') {
-                        //redirecting to main page from here for the time being.
+
+                        swal(
+                            'exito',
+                            'Cambio Registrado!',
+                            'success'
+                        )
+
                         window.location = response.url;
                     }
                 },

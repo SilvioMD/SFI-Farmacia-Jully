@@ -61,6 +61,48 @@ namespace SFI_Farmacia_Jully.Models.Action
 
         }
 
+        public static ProductoE ProductoAEditar(int codigo)
+        {
+
+            //se guarda la cedena de conexion con la base de datos 
+            string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            //agregar los comandos
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@TIPO", 5),
+                new SqlParameter("@IdMedicamento", codigo)
+            };
+
+            //cadena de la consulta
+            string sql = "SP_Productos";
+
+            //crear data table para almacenar los datos
+            _ = new DataTable();
+            DataTable dt = Data.Data.Query(sql, parametros, CommandType.StoredProcedure, Conexion);
+            ProductoE p = new ProductoE();
+            
+            if (dt.Rows.Count > 0)
+            {
+                //llamar la entidad usuario; que contiene los campos de la base de datos
+                p.Nombre = dt.Rows[0]["NombreProducto"].ToString();
+                p.UnidadMedida = dt.Rows[0]["UnidadMedida"].ToString();
+                p.Presentacion = dt.Rows[0]["Presentacion"].ToString();
+                p.AccionFarmacologica = dt.Rows[0]["AccionFarmacologica"].ToString();
+                p.Laboratorio = dt.Rows[0]["Laboratorio"].ToString();
+                p.Precio = Convert.ToDecimal(dt.Rows[0]["Precio"].ToString());
+                p.CantidadDisponible = Convert.ToInt16(dt.Rows[0]["Cantidad"].ToString());
+
+                return p;
+
+            }
+            else {
+
+                return p;
+            }
+
+        }
+
         public static bool Insert(ProductoE p)
         {
 
@@ -72,8 +114,6 @@ namespace SFI_Farmacia_Jully.Models.Action
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@Tipo", 1),
-               
-               new SqlParameter("@IdProducto",0),
                new SqlParameter("@NombreProducto",p.Nombre),
                new SqlParameter("@IdTipoProducto",p.TipoPoducto),
                new SqlParameter("@CostoUnitario",150),

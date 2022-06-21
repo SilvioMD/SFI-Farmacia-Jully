@@ -10,8 +10,18 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Ventas
         public ActionResult Carrito()
         {
-            ViewBag.NoFactura = VentasA.IdVenta() + 1;
-            return View(ProductoA.Listar());
+            if (Session["UsuarioLogeado"] != null)
+            {
+                ViewBag.NoFactura = VentasA.IdVenta() + 1;
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View(ProductoA.Listar());
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            
 
         }
 

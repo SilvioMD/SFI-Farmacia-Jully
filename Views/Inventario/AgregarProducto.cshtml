@@ -2,9 +2,6 @@
 @{
     ViewBag.Title = "AgregarProducto";
 }
-
-
-
 <body>
 
     <!-- Pre-loader end -->
@@ -28,7 +25,7 @@
                                         <!-- task, page, download counter  start -->
                                         <div class="card-body">
 
-                                            <form action="~/Inventario/Agregar" method="post">
+                                            <form id="form-producto">
                                                 <div class="row">
 
                                                     <div class="col">
@@ -39,7 +36,7 @@
                                                         <div class="mb-3">
 
                                                             <label class="form-label" for="registro-docentes"><strong>Tipo de producto</strong></label>
-                                                            <select class="form-control" name="Tipo" id="select-cargo-docente" required>
+                                                            <select class="form-control" name="Tipo" id="tipo-producto" required>
                                                                 <option value="1">Medicamento</option>
                                                                 <option value="2">Miscelaneos</option>
 
@@ -68,8 +65,7 @@
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Descripcion</strong></label>
-                                                            <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="6">
-                                                                   </textarea>
+                                                            <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="4"></textarea>
                                                         </div>
                                                     </div>
 
@@ -122,10 +118,7 @@
                                                 </div>
 
 
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="btn-registro-docente" id="btn-registro-docente">Agregar producto</button></div>
-
-
-
+                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" name="btn-registro-docente" id="btn-registro-docente" onclick="Guardar()">Agregar producto</button></div>
 
                                             </form>
                                         </div>
@@ -138,7 +131,7 @@
 
                                                
                                                 <!--tabla para informacion de cursos -->
-                                                <div class="table-responsive table mt-2" id="tabla" role="grid">
+                                                <div class="table-responsive table mt-1" id="tabla" role="grid">
 
 
                                                     <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
@@ -146,50 +139,18 @@
                                                         <thead class="align-center">
 
                                                             <tr>
-                                                                <th>IdMedicamento</th>
+                                                                <th>Acciones</th>
                                                                 <th>Codigo</th>
                                                                 <th>Nombre del Producto</th>
                                                                 <th>Unidad de Medida</th>
                                                                 <th>Presentacion</th>
-                                                                <th>AccionFarmacologica</th>
                                                                 <th>Laboratorio</th>
-                                                                <th>Precio</th>
-                                                                <th>Cantidad</th>
-                                                                <th>Acciones</th>
+                                                                <th>Accion Farmacologica</th>
                                                             </tr>
 
                                                         </thead>
 
-                                                        <tbody>
-
-                                                            @foreach (var datos in Model)
-                                                            {
-                                                                <tr>
-                                                                    <td>@datos.IdMedicamento</td>
-                                                                    <td>@datos.Codigo</td>
-                                                                    <td>@datos.Nombre</td>
-                                                                    <td>@datos.UnidadMedida</td>
-                                                                    <td>@datos.Presentacion</td>
-                                                                    <td>@datos.AccionFarmacologica</td>
-                                                                    <td>@datos.Laboratorio</td>
-                                                                    <td>@datos.Precio</td>
-                                                                    <td>@datos.CantidadDisponible</td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
-                                                                            <i class="feather icon-edit-1 text-white"></i>
-
-                                                                        </a>
-                                                                        <a class="btn bg-warning d-sm-inline-block text-white btn-baja" data-index="">
-                                                                            <i class="feather icon-trash text-white"></i>
-
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-
-                                                            }
-
-                                                        </tbody>
-
+                                                       
                                                     </table>
 
                                                   
@@ -216,30 +177,42 @@
 
 </body>
 
-
-
 @section scripts{
 
     <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
     <script type="text/javascript">
+        var tabla_persona;
 
         $(function () {
 
             $(document).ready(function () {
-                $('#InfoProducto').DataTable({
-                    responsive:true
+
+                tabla_persona = $('#InfoProducto').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("Listar", "Inventario")",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Codigo" },
+                        { "data": "Nombre" },
+                        { "data": "UnidadMedida" },
+                        { "data": "Presentacion" },
+                        { "data": "Laboratorio" },
+                        {
+                            "data": "IdMedicamento", "render": function (data) {
+                                return "<a class='btn btn-primary d-none d-sm-inline-block text-white btnEditar' onclick='Editar(" + data + ")'><i class='feather icon-edit-1 text-white'></i></a>" +
+                                    "<a class='btn bg-warning d-sm-inline-block text-white btn-baja' onclick='BajaProducto(" + data + ")'><i class='feather icon-trash text-white'></i></a>"
+                            },
+                            "orderable": false,
+                            "searchable": false,
+                            "width": "150px"
+                        },
+                        { "data": "AccionFarmacologica" }
+
+                    ],
                 });
-                
-            });
 
-            $("#InfoProducto tr td .btnEditar").click(function () {
-
-               
-                $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
-                $("#unidad_medida").val($(this).parent().parent().children()[3].innerHTML);
-                $("#precio").val($(this).parent().parent().children()[7].innerHTML);
-                $("#cantidad").val($(this).parent().parent().children()[8].innerHTML);
-               
             });
 
             $("#InfoProducto tr td .btn-baja").click(function () {
@@ -251,6 +224,91 @@
 
         });
 
+        function Guardar() {
+
+            var params = {
+                p: {
+                    Nombre: $("#nombre").val(),
+                    TipoPoducto: $("#tipo-producto").val(),
+                    UnidadMedida: $("#unidad_medida").val(),
+                    Descripcion: $("#descripcion").val(),
+                    Precio: parseFloat($("#precio").val()),
+                    CantidadDisponible: $("#cantidad").val(),
+                    CantidadMinima: $("#cantidadminima").val(),
+                    IdLaboratorio: $("#cbolab").val(),
+                    IdAccionFarmacologica: $("#cboAF").val(),
+                    IdPresentacion: $("#cbopresent").val()
+                }
+
+            }
+            
+            jQuery.ajax({
+                type: "POST",
+                data: JSON.stringify(params),
+                url: "@Url.Action("Agregar", "Inventario")",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+
+                    console.log(data);
+                    if (data.result == false) {
+                        console.log("los datos son incorrectos");
+                    }
+                    else if (data.result == true) {
+
+                        swal(
+                            'exito',
+                            'Cambio Registrado!',
+                            'success'
+                        )
+                        tabla_persona.ajax.reload();
+                        const form = document.getElementById("form-producto");
+                        form.reset();
+                    }
+                },
+                error: function (xhr, thrownError) {
+                    console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                }
+            });
+        }
+
+
+        function Editar(codigo) {
+
+            console.log(codigo);
+            if (codigo != 0) {
+                jQuery.ajax({
+                    url: "@Url.Action("DatosEditar", "Inventario")" + "?Codigo=" + codigo,
+                    type: "GET",
+                    datatype: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+
+                        console.log(data.data)
+                        if (data != null) {
+
+                            
+                            $("#nombre").val(data.data.Nombre);
+                            $("#unidad_medida").val(data.data.UnidadMedida);
+                            $("#precio").val(data.data.Precio);
+                            $("#cantidad").val(data.data.CantidadDisponible);
+
+                        } else {
+                            console.log("no se puede mostrar");
+                        }
+                    },
+                    error: function (xhr, thrownError) {
+                        console.log(xhr.status + " \n " + xhr.responseText, "\n" + thrownError);
+                    }
+                });
+            } else {
+                $("#nombre").val("");
+                $("#unidad_medida").val("");
+                $("#precio").val("");
+                $("#cantidad").val("");
+
+            }
+
+        }
 
         function BajaProducto(id) {
 

@@ -16,14 +16,30 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Reportes
         public ActionResult RepCompras()
         {
-            return View();
+            if (Session["UsuarioLogeado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            
         }
 
         public ActionResult RepVentas()
         {
-            return View();
+            if (Session["UsuarioLogeado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
 
         }
+
         [HttpPost]
         public ActionResult ExportarCompras(string fechainicio, string fechafin)
         {

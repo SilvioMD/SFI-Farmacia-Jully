@@ -10,8 +10,18 @@ namespace SFI_Farmacia_Jully.Controllers
         // GET: Cliente
         public ActionResult AgregarCliente()
         {
+            if (Session["UsuarioLogeado"] != null)
+            {
 
-            return View(ClienteA.Listar());
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View(ClienteA.Listar());
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            
         }
 
         [HttpPost]

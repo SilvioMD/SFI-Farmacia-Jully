@@ -29,5 +29,7 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public decimal Costo { get; set; }
         public int CantidadDisponible { get; set; }
         public int CantidadMinima { get; set; }
+
+     
     }
 }

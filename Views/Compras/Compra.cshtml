@@ -106,64 +106,9 @@
 
                                                 </div>
                                                 <div class="col">
-                                                    <label>Sub Total: </label>
-                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
-
-                                                </div>
-
-                                                <div class="col">
-
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col">
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-                                                    <label>Descuento:</label>
-                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required />
-
-                                                </div>
-
-                                                <div class="col">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="col">
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
                                                     <label>Total </label>
-                                                    <input class="form-control" id="pnombre-docente" name="pnombre-docente" required/>
-
+                                                    <input class="form-control" id="total-compra" name="pnombre-docente" value="0" required/>
+                                                    
                                                 </div>
 
                                                 <div class="col">
@@ -230,6 +175,8 @@
 
         $(function () {
 
+            let total = 0;
+
             $(document).ready(function () {
 
                 $('#InfoProducto').DataTable({
@@ -266,14 +213,33 @@
                 if (codigo !== "" && nombre !== "" && precio !== "" && cantidad !== "" && cambioprecio !== "") {
 
                     if (parseInt(cantidad) <= 0) {
-                        alert("la cantidad debe ser mayor a 0");
+                        swal(
+                            'error',
+                            'la cantidad debe ser mayor a 0',
+                            'error'
+                        )
+                       // alert("la cantidad debe ser mayor a 0");
+
                     } else {
 
+                        //calcular el total
+                        total = document.getElementById('total-compra').value; 
+                        var totalfinal = 0;
+                        totalfinal += Number.parseFloat(total) + (Number.parseFloat(precio) * Number.parseFloat(cantidad));
+
+                        $("#total-compra").val(totalfinal);
+                        //insertar los datos a la tabla
                         Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento);
+
                     }
 
                 } else {
-                    alert("no se puede agregar");
+                    swal(
+                        'error',
+                        'Completa los campos',
+                        'error'
+                    )
+                   // alert("no se puede agregar");
                 }
 
             });
@@ -324,11 +290,21 @@
                             success: function (response) {
 
                                 if (response.result == 'Problema') {
-                                    alert("Resultado incorrecto");
+                                    swal(
+                                        'error',
+                                        'Resultado incorrecto',
+                                        'error'
+                                    )
+                                   // alert("Resultado incorrecto");
                                 }
                                 else if (response.result == 'Redirect') {
                                     //redirecting to main page from here for the time being.
-                                    alert("Venta agregada");
+                                    swal(
+                                        'exito',
+                                        'Compra agregadas',
+                                        'success'
+                                    )
+                                    //alert("Venta agregada");
                                     window.location = response.url;
                                 }
                             },
@@ -338,10 +314,20 @@
                         });
 
                     } else {
-                        alert("no hay productos agregados");
+                        swal(
+                            'error',
+                            'no hay productos agregados',
+                            'error'
+                        )
+                        //alert("no hay productos agregados");
                     }
                 } else {
-                    alert("agrege el codigo de la factura");
+                    swal(
+                        'error',
+                        'agrege el codigo de la factura',
+                        'error'
+                    )
+                   // alert("agrege el codigo de la factura");
                 }
 
             });
@@ -378,11 +364,20 @@
             col7.className = 'visibilidad';
             col8.className = 'visibilidad';
         }
-
+       
         //eventos de la tabla detalle de venta
         function eliminar() {
 
-            event.target.parentNode.parentNode.remove();
+            var target1 = event.target;
+            total = document.getElementById('total-compra').value;
+            var totalfinal = 0;
+            var eliminartotal = target1.parentNode.parentNode.children[4].innerHTML;
+
+            totalfinal = Number.parseFloat(total) - Number.parseFloat(eliminartotal);
+            $("#total-compra").val(totalfinal);
+
+            //eliminar la fila
+            target1.parentNode.parentNode.remove();
 
         }
 
@@ -390,8 +385,6 @@
             const form = document.getElementById("form-producto");
             form.reset();
         }
-
-
 
     </script>
 }
