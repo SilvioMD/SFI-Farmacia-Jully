@@ -1,12 +1,10 @@
-﻿
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProductoE>
 @{
     ViewBag.Title = "Compra";
 }
 
-
-
 <body>
-    @RenderPage("~/Views/Inventario/Buscar.cshtml")
+
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
 
@@ -26,136 +24,263 @@
                             <div class="main-body">
                                 <div class="page-wrapper">
 
-                                    <div class="card-header py-3">
-                                        <p class="text-primary m-0 fw-bold">Datos de compra</p>
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
-                                                <input class="form-control" id="NoFact" name="pnombre-docente" value="" required />
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
-                                                <select class="form-control" name="select" id="select-proveedor" required>
-                                                    <option value="1">Ramos</option>
-                                                    <option value="2">Solka</option>
-                                                    <option value="3">Bayer</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-ventas" onclick="Limpiar()">
-                                        Agregar Producto
-                                    </button>
                                     <br />
 
+                                    <div class="modal-content">
+                                        <div class="modal-header">
 
-                                    <div class="card-shadow mb-5">
-                                        <div class="card-header py-3">
-                                            <h6 class="text-primary fw-bold m-0">Detalle de la Factura</h6>
+                                            <h5 class="text-primary m-0 fw-bold">Seleccionar Producto</h5>
+
                                         </div>
-                                        <div class="card-body">
-                                            <!--tabla para informacion de cursos -->
-                                            <div class="table-responsive table mt-2" role="grid">
-                                                <table class="table my-0" id="tabladetalle">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Codigo</th>
-                                                            <th>Descripción</th>
-                                                            <th>Precio</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Valor</th>
-                                                            <th>Acciones</th>
-                                                            <th style="visibility:collapse; display:none;">Vencimiento</th>
-                                                            <th style="visibility:collapse; display:none;">Cambio Precio</th>
-                                                        </tr>
-                                                    </thead>
+                                        <div class="modal-body">
+                                            <form>
 
-                                                    <tbody>
+                                                <div class="row">
 
-                                                      
-                                                    </tbody>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Codigo </strong><br /></label>
+                                                            <input class="form-control" id="IdMed" name="Idmedicamento" type="hidden" />
+                                                            <input class="form-control" id="codigo" name="pnombre-docente" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Nombre</strong><br /></label>
+                                                            <input class="form-control" id="nombre" name="snombre-docente" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Vencimiento</strong><br /></label>
+                                                            <input type="date" class="form-control" id="vencimiento" name="snombre-docente" />
+                                                        </div>
+                                                    </div>
 
-                                                </table>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Actualizar precio de venta.</strong><br /></label>
+                                                            <input class="form-control" id="cambio-precio" name="snombre-docente" />
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Precio de compra</strong><br /></label>
+                                                            <input class="form-control" id="precio" name="snombre-docente" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad</strong><br /></label>
+                                                            <input class="form-control" id="cantidad-vendida" name="pnombre-docente" value="" />
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="mb-3">
+
+                                                    <button type="button" class="btn btn-primary" name="btn-registro-docente" id="btn-agregar-producto">Agregar </button>
+
+                                                </div>
+
+                                            </form>
+
+                                            <div class="card-shadow mb-auto">
+
+                                                <div class="card-body">
+
+                                                    <!--tabla para informacion de cursos -->
+                                                    <div class="table-responsive table mt-2" id="tblbuscar" role="grid">
+
+                                                        <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+
+                                                            <thead class="left">
+
+                                                                <tr>
+                                                                    <th>IdMedicamento</th>
+                                                                    <th>Codigo</th>
+                                                                    <th>Nombre del Producto</th>
+                                                                    <th>Unidad de Medida</th>
+                                                                    <th>Presentacion</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Seleccionar</th>
+                                                                    <th>Laboratorio</th>
+                                                                    <th>AccionFarmacologica</th>
+
+                                                                </tr>
+
+                                                            </thead>
+
+                                                            <tbody>
+                                                                @foreach (var datos in Model)
+                                                                {
+                                                                <tr>
+                                                                    <td>@datos.IdMedicamento</td>
+                                                                    <td>@datos.Codigo</td>
+                                                                    <td>@datos.Nombre</td>
+                                                                    <td>@datos.UnidadMedida</td>
+                                                                    <td>@datos.Presentacion</td>
+                                                                    <td>@datos.Precio</td>
+                                                                    <td>@datos.CantidadDisponible</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                            <i class="feather icon-edit-1 text-white"></i>
+
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>@datos.Laboratorio</td>
+                                                                    <td>@datos.AccionFarmacologica</td>
+                                                                </tr>
+                                                                }
+
+                                                            </tbody>
+
+                                                        </table>
+
+
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <br />
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="text-primary fw-bold m-0">Factura de compra</h5>
 
-                                        <form>
+                                        </div>
+                                        <div class="modal-body">
 
                                             <div class="row">
 
                                                 <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
+                                                        <input class="form-control" id="NoFact" name="pnombre-docente" value="" required />
+                                                    </div>
                                                 </div>
                                                 <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col">
-                                                    <label>Total </label>
-                                                    <input class="form-control" id="total-compra" name="pnombre-docente" value="0" required/>
-                                                    
-                                                </div>
-
-                                                <div class="col">
-
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
+                                                        <select class="form-control" name="select" id="select-proveedor" required>
+                                                            <option value="1">Ramos</option>
+                                                            <option value="2">Solka</option>
+                                                            <option value="3">Bayer</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
 
                                             </div>
-                                            <div class="row">
 
-                                                <div class="col">
-                                                </div>
-                                                <div class="col">
 
-                                                </div>
-                                                <div class="col">
+                                            <div class="card-shadow mb-auto">
 
-                                                </div>
-                                                <div class="col">
 
-                                                </div>
-                                                <div class="col">
+                                                <div class="card-body">
+                                                    <!--tabla para informacion de cursos -->
+                                                    <div class="table-responsive table mt-2" role="grid">
+                                                        <table class="table my-0" id="tabladetalle">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Codigo</th>
+                                                                    <th>Descripción</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Valor</th>
+                                                                    <th>Retirar</th>
+                                                                    <th style="visibility:collapse; display:none;">Vencimiento</th>
+                                                                    <th style="visibility:collapse; display:none;">Cambio Precio</th>
+                                                                </tr>
+                                                            </thead>
 
-                                                </div>
-                                                <div class="col">
-                                                    <div>
-                                                        <br />
-                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar" role="button">
-                                                            <i class="fas fa-shopping-bag"></i>Guardar Compra
-                                                        </a>
+                                                            <tbody>
+                                                            </tbody>
+
+                                                        </table>
 
                                                     </div>
                                                 </div>
 
-                                                <div class="col">
+                                                <form>
 
-                                                </div>
+                                                    <div class="row">
 
+                                                        <div class="col">
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Total </label>
+                                                            <input class="form-control" id="total-compra" name="pnombre-docente" value="0" required />
+
+                                                        </div>
+
+                                                        <div class="col">
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col">
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+                                                            <div>
+                                                                <br />
+                                                                <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar" role="button">
+                                                                    <i class="fas fa-shopping-bag"></i>Guardar Compra
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col">
+
+                                                        </div>
+
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
+
 
                                     <!-- footer -->
                                     @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
                     </div>
@@ -189,9 +314,9 @@
 
                     $("#codigo").val($(this).parent().parent().children()[0].innerHTML);
                     $("#nombre").val($(this).parent().parent().children()[2].innerHTML);
-                    $("#cambio-precio").val($(this).parent().parent().children()[6].innerHTML);
+                    $("#cambio-precio").val($(this).parent().parent().children()[5].innerHTML);
 
-                    
+
                 });
 
             });
@@ -203,12 +328,12 @@
                 console.log("dentro de insertar");
                 var codigo = document.getElementById('codigo').value;
                 var nombre = document.getElementById('nombre').value;
-                var precio = document.getElementById('precio').value; 
+                var precio = document.getElementById('precio').value;
                 var cambioprecio = document.getElementById('cambio-precio').value;
                 var cantidad = document.getElementById('cantidad-vendida').value;
 
                 var vencimiento = document.getElementById('vencimiento').value;
-                
+
                 console.log(cantidad);
                 if (codigo !== "" && nombre !== "" && precio !== "" && cantidad !== "" && cambioprecio !== "") {
 
@@ -218,12 +343,11 @@
                             'la cantidad debe ser mayor a 0',
                             'error'
                         )
-                       // alert("la cantidad debe ser mayor a 0");
 
                     } else {
 
                         //calcular el total
-                        total = document.getElementById('total-compra').value; 
+                        total = document.getElementById('total-compra').value;
                         var totalfinal = 0;
                         totalfinal += Number.parseFloat(total) + (Number.parseFloat(precio) * Number.parseFloat(cantidad));
 
@@ -239,19 +363,19 @@
                         'Completa los campos',
                         'error'
                     )
-                   // alert("no se puede agregar");
+
                 }
 
             });
 
             $(".efectuar").click(function () {
 
-                
+
                 let tabla = document.getElementById('tabladetalle');
                 let filas = tabla.getElementsByTagName('tr');
                 let NoFact = document.getElementById('NoFact').value;
                 let Idproveedor = document.getElementById('select-proveedor');
-                
+
                 if (NoFact !== "") {
 
                     if (filas.length > 1) {
@@ -273,7 +397,7 @@
                                 "FechaVenc": filas[i].cells[7].innerHTML,
                             };
 
-                           
+
                             productos.push(producto);
 
                         }
@@ -295,7 +419,7 @@
                                         'Resultado incorrecto',
                                         'error'
                                     )
-                                   // alert("Resultado incorrecto");
+                                    // alert("Resultado incorrecto");
                                 }
                                 else if (response.result == 'Redirect') {
                                     //redirecting to main page from here for the time being.
@@ -327,18 +451,18 @@
                         'agrege el codigo de la factura',
                         'error'
                     )
-                   // alert("agrege el codigo de la factura");
+                    // alert("agrege el codigo de la factura");
                 }
 
             });
 
         });
 
-       function Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento) {
+        function Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento) {
 
             //obtenr la referencia de la tabla detalle
             let tbldatos = document.getElementById('tabladetalle').insertRow(-1);
-            //obtener los indices de las celdas 
+            //obtener los indices de las celdas
             let col1 = tbldatos.insertCell(0);
             let col2 = tbldatos.insertCell(1);
             let col3 = tbldatos.insertCell(2);
@@ -364,7 +488,7 @@
             col7.className = 'visibilidad';
             col8.className = 'visibilidad';
         }
-       
+
         //eventos de la tabla detalle de venta
         function eliminar() {
 

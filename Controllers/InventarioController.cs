@@ -42,11 +42,6 @@ namespace SFI_Farmacia_Jully.Controllers
             return Json(new { data = ProductoA.ProductoAEditar(Convert.ToInt32(Codigo))}, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Buscar()
-        {
-            return View();
-        }
-
         [HttpPost]
         public JsonResult Agregar(ProductoE p)
         {
@@ -56,18 +51,10 @@ namespace SFI_Farmacia_Jully.Controllers
         }
 
         [HttpPost]
-        public ActionResult Baja(string IdProducto)
+        public ActionResult Baja(string IdMedicamento)
         {
 
-            if (ProductoA.Baja(IdProducto) == false)
-            {
-                return Json(new { result = "ProblemaBaja" }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(new { result = "Redirect", url = Url.Action("AgregarProducto", "Inventario") });
-
-            }
+            return Json(new { result = ProductoA.Baja(IdMedicamento) }, JsonRequestBehavior.AllowGet);
 
         }
 

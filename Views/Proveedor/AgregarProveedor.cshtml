@@ -229,7 +229,8 @@
 
         function Guardar(Nombre, Telefono, Direccion) {
 
-            var params = JSON.stringify({NombreProveedor: Nombre, NoTelefono: Telefono, DirProveedor: Direccion});
+
+            var params = JSON.stringify({ NombreProveedor: Nombre, NoTelefono: Telefono, DirProveedor: Direccion });
 
             $.ajax({
                 type: "POST",

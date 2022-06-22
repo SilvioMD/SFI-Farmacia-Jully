@@ -7,7 +7,7 @@
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-            <div class="pcoded-container navbar-wrapper">
+        <div class="pcoded-container navbar-wrapper">
 
             @RenderPage("~/Views/Shared/Layout_header.cshtml")
 
@@ -54,6 +54,7 @@
                                                         <div class="mb-3">
                                                             <label class="form-label" for="registro-docentes"><strong>Nombre del producto</strong><br /></label>
                                                             <input class="form-control" id="nombre" name="NombreProducto" required />
+                                                            <input type="hidden" class="form-control" id="idmedicamento"/>
                                                         </div>
                                                     </div>
                                                     <div class="col">
@@ -129,31 +130,31 @@
                                             </div>
                                             <div class="card-body">
 
-                                               
+
                                                 <!--tabla para informacion de cursos -->
                                                 <div class="table-responsive table mt-1" id="tabla" role="grid">
 
 
                                                     <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
-                                                        
+
                                                         <thead class="align-center">
 
                                                             <tr>
-                                                                <th>Acciones</th>
                                                                 <th>Codigo</th>
                                                                 <th>Nombre del Producto</th>
                                                                 <th>Unidad de Medida</th>
                                                                 <th>Presentacion</th>
                                                                 <th>Laboratorio</th>
+                                                                <th>Acciones</th>
                                                                 <th>Accion Farmacologica</th>
                                                             </tr>
 
                                                         </thead>
 
-                                                       
+
                                                     </table>
 
-                                                  
+
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +173,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 
 </body>
@@ -215,19 +216,13 @@
 
             });
 
-            $("#InfoProducto tr td .btn-baja").click(function () {
-
-                console.log($(this).parent().parent().children()[0].innerHTML)
-                var id = $(this).parent().parent().children()[0].innerHTML;
-                BajaProducto(id);
-            });
-
         });
 
         function Guardar() {
 
             var params = {
                 p: {
+                    IdMedicamento: $("#idmedicamento").val(),
                     Nombre: $("#nombre").val(),
                     TipoPoducto: $("#tipo-producto").val(),
                     UnidadMedida: $("#unidad_medida").val(),
@@ -241,7 +236,7 @@
                 }
 
             }
-            
+
             jQuery.ajax({
                 type: "POST",
                 data: JSON.stringify(params),
@@ -271,7 +266,6 @@
             });
         }
 
-
         function Editar(codigo) {
 
             console.log(codigo);
@@ -283,10 +277,10 @@
                     contentType: "application/json",
                     success: function (data) {
 
-                        console.log(data.data)
+
                         if (data != null) {
 
-                            
+                            $("#idmedicamento").val(data.data.IdMedicamento);
                             $("#nombre").val(data.data.Nombre);
                             $("#unidad_medida").val(data.data.UnidadMedida);
                             $("#precio").val(data.data.Precio);
@@ -312,20 +306,28 @@
 
         function BajaProducto(id) {
 
-            var params = JSON.stringify({ IdProducto: id});
+            var params = JSON.stringify({ IdMedicamento: id});
             $.ajax({
                 type: "POST",
                 data: params,
-                url: "/Inventario/Baja",
+                url: "@Url.Action("Baja", "Inventario")",
                 contentType: "application/json;charset=utf-8",
                 success: function (response) {
 
-                    if (response.result == 'ProblemaBaja') {
-                        console.log("datos incorrectos para dar baja al proveedor");
+                    if (response.result == true) {
+                        swal(
+                            'exito',
+                            'Baja completada!',
+                            'success'
+                        )
+                        tabla_persona.ajax.reload();
                     }
-                    else if (response.result == 'Redirect') {
-                        //redirecting to main page from here for the time being.
-                        window.location = response.url;
+                    else {
+                        swal(
+                            'Baja',
+                            'no se completo la baja',
+                            'error'
+                        )
                     }
                 },
                 error: function (xhr, thrownError) {
@@ -333,7 +335,6 @@
                 }
             });
         }
-
 
     </script>
 

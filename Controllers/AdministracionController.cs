@@ -68,9 +68,6 @@ namespace SFI_Farmacia_Jully.Controllers
                 AdministracionA.Insert(p);
             }
 
-
-            AdministracionA.Insert(p);
-
             return Redirect("~/Administracion/AgregarUsuario");
         }
 

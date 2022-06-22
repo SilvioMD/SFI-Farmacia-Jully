@@ -66,10 +66,8 @@ namespace SFI_Farmacia_Jully.Controllers
                 };
 
                 ClienteA.Insert(p);
-
             }
-            //llamar la entidad usuario; que contiene los campos de la base de datos
-
+           
             return Redirect("~/Cliente/AgregarCliente");
         }
 

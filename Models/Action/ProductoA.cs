@@ -85,6 +85,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             if (dt.Rows.Count > 0)
             {
                 //llamar la entidad usuario; que contiene los campos de la base de datos
+                p.IdMedicamento = Convert.ToInt16(dt.Rows[0]["IdMedicamento"].ToString());
                 p.Nombre = dt.Rows[0]["NombreProducto"].ToString();
                 p.UnidadMedida = dt.Rows[0]["UnidadMedida"].ToString();
                 p.Presentacion = dt.Rows[0]["Presentacion"].ToString();
@@ -114,6 +115,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@Tipo", 1),
+                new SqlParameter("@IdMedicamento",p.IdMedicamento),
                new SqlParameter("@NombreProducto",p.Nombre),
                new SqlParameter("@IdTipoProducto",p.TipoPoducto),
                new SqlParameter("@CostoUnitario",150),

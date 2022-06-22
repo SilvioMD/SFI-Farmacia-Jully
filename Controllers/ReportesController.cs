@@ -56,7 +56,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 worksheet.Cell(2,2).Value = "Compras entre: ";
                 worksheet.Cell(2, 3).Value = fechainicio + " hasta ";
                 worksheet.Cell(2, 4).Value = fechafin;
-
+                
 
                 //-----------Genero la tabla de colores-----------
                 int fila = 5;
@@ -86,7 +86,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 rango.Style.Fill.BackgroundColor = XLColor.Blue; //Indicamos el color de background
                 rango.Style.Font.FontColor = XLColor.White;
 
-                //-----------Le damos el formato a la cabecera----------------
+                //-----------Le damos el formato a la tabla----------------
                 var rangotitulo = worksheet.Range("B5:E21"); //Seleccionamos un rango
                 rangotitulo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; //Alineamos horizontalmente
                 rangotitulo.Style.Font.FontSize = 10; //Indicamos el tamaño de la fuente
@@ -101,7 +101,6 @@ namespace SFI_Farmacia_Jully.Controllers
 
                 using (MemoryStream stream = new MemoryStream())
                 {
-                    
                     libro.SaveAs(stream);
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte Compra" + DateTime.Now.ToString() + ".xlsx");
                 }
