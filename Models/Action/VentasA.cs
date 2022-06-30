@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
@@ -81,7 +81,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             //agregar los comandos
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                
+
             };
 
             //cadena de la consulta
@@ -98,7 +98,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             {
 
                 NoFact = Convert.ToInt16(dt.Rows[0]["NoFactura"].ToString());
-                
+
             }
 
             return NoFact;

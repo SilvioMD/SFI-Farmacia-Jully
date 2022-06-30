@@ -1,16 +1,16 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using SFI_Farmacia_Jully.Models.Entity;
 
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
     public class ReportesA
     {
-        public static  List<CompraE> ReporteGeneralCompras(DateTime Inicio, DateTime Fin)
+        public static List<CompraE> ReporteGeneralCompras(DateTime Inicio, DateTime Fin)
         {
 
             //se guarda la cedena de conexion con la base de datos 
@@ -22,7 +22,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                 new SqlParameter("@TIPO", 11),
                 new SqlParameter("@Inicio", Inicio),
                 new SqlParameter("@Fin", Fin)
-            }; 
+            };
 
             //cadena de la consulta
             string sql = "SP_ReportesCompras_ventas";
@@ -55,7 +55,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
 
             }
-            
+
             return Compras;
 
         }

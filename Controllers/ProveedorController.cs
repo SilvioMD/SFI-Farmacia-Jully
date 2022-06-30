@@ -6,7 +6,7 @@ namespace SFI_Farmacia_Jully.Controllers
 {
     public class ProveedorController : Controller
     {
-        
+
         // GET: Proveedor
         public ActionResult AgregarProveedor()
         {
@@ -22,11 +22,11 @@ namespace SFI_Farmacia_Jully.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            
+
         }
 
         [HttpPost]
-        public ActionResult Agregar(string NombreProveedor,string NoTelefono, string DirProveedor,string IdProveedor)
+        public ActionResult Agregar(string NombreProveedor, string NoTelefono, string DirProveedor, string IdProveedor)
         {
 
             ProveedorE p;
@@ -34,11 +34,11 @@ namespace SFI_Farmacia_Jully.Controllers
             {
                 IdProveedor = "0";
             }
-            
-            if(IdProveedor == "")
+
+            if (IdProveedor == "")
             {
                 //llamar la entidad usuario; que contiene los campos de la base de datos
-                 p = new ProveedorE
+                p = new ProveedorE
                 {
                     NombreProveedor = NombreProveedor,
                     Telefono = NoTelefono,
@@ -59,14 +59,14 @@ namespace SFI_Farmacia_Jully.Controllers
                 ProveedorA.Insert(p);
             }
 
-            
+
             return Redirect("~/Proveedor/AgregarProveedor");
         }
 
         [HttpPost]
         public ActionResult Baja(string IdProveedor)
         {
-           
+
             if (ProveedorA.Baja(IdProveedor) == false)
             {
                 return Json(new { result = "ProblemaBaja" }, JsonRequestBehavior.AllowGet);

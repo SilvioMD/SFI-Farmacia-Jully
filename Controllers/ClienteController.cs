@@ -1,7 +1,7 @@
 ﻿
-using System.Web.Mvc;
 using SFI_Farmacia_Jully.Models.Action;
 using SFI_Farmacia_Jully.Models.Entity;
+using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
 {
@@ -21,7 +21,7 @@ namespace SFI_Farmacia_Jully.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            
+
         }
 
         [HttpPost]
@@ -67,7 +67,7 @@ namespace SFI_Farmacia_Jully.Controllers
 
                 ClienteA.Insert(p);
             }
-           
+
             return Redirect("~/Cliente/AgregarCliente");
         }
 

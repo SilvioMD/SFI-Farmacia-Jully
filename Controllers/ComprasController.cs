@@ -13,7 +13,7 @@ namespace SFI_Farmacia_Jully.Controllers
         {
             if (Session["UsuarioLogeado"] != null)
             {
-                
+
                 ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
                 return View(ProductoA.Listar());
 
@@ -23,7 +23,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            
+
         }
 
         public ActionResult VerCompras()
@@ -56,7 +56,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 }
 
                 //se insertan datos general de la factura
-                if (CompraA.InsertCompra(Total,Productos[0].NoFactura,Productos[0].IdProveedor) == true)
+                if (CompraA.InsertCompra(Total, Productos[0].NoFactura, Productos[0].IdProveedor) == true)
                 {
                     //insertar los detalles de la factura
                     for (var cant = 0; cant <= Productos.Count - 1; cant++)
@@ -74,7 +74,7 @@ namespace SFI_Farmacia_Jully.Controllers
 
 
             }
-            
+
         }
 
     }

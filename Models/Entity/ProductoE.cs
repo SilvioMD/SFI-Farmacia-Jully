@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SFI_Farmacia_Jully.Models.Entity
+﻿namespace SFI_Farmacia_Jully.Models.Entity
 {
     public class ProductoE
     {
@@ -30,6 +25,6 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public int CantidadDisponible { get; set; }
         public int CantidadMinima { get; set; }
 
-     
+
     }
 }

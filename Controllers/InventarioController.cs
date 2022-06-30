@@ -28,7 +28,7 @@ namespace SFI_Farmacia_Jully.Controllers
             ViewBag.CboAccionFarm = new SelectList(CatalogoA.ListarAccionFarm(), "IdAccionFarmacologica", "AccionFarmacologica");
             ViewBag.CboPresentacion = new SelectList(CatalogoA.ListarPresentacion(), "IdPresentacion", "Presentacion");
 
-            
+
             return View(ProductoA.Listar());
         }
 
@@ -39,13 +39,13 @@ namespace SFI_Farmacia_Jully.Controllers
 
         public JsonResult DatosEditar(string Codigo)
         {
-            return Json(new { data = ProductoA.ProductoAEditar(Convert.ToInt32(Codigo))}, JsonRequestBehavior.AllowGet);
+            return Json(new { data = ProductoA.ProductoAEditar(Convert.ToInt32(Codigo)) }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult Agregar(ProductoE p)
         {
-           
+
             return Json(new { result = ProductoA.Insert(p) }, JsonRequestBehavior.AllowGet);
 
         }

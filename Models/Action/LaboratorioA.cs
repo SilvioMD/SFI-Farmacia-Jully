@@ -1,11 +1,9 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SFI_Farmacia_Jully.Models.Entity;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
@@ -43,7 +41,7 @@ namespace SFI_Farmacia_Jully.Models.Action
                     {
                         IdLaboratorio = Convert.ToInt32(dt.Rows[i]["Codigo Laboratorio"].ToString()),
                         Laboratorio = dt.Rows[i]["Laboratorio"].ToString(),
-                        
+
                     };
 
                     laboratorio.Add(p);
@@ -66,7 +64,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             {
                 new SqlParameter("@TIPO", 2),
                 new SqlParameter("@Laboratorio", p.Laboratorio),
-   
+
             };
             //cadena de la consulta
             string sql = "SP_Laboratorio";

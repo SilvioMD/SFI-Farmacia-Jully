@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace SFI_Farmacia_Jully
 {
@@ -20,7 +19,7 @@ namespace SFI_Farmacia_Jully
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js")); 
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -28,7 +27,7 @@ namespace SFI_Farmacia_Jully
 
             //index
             bundles.Add(new ScriptBundle("~/assets/css").Include(
-            "~/assets/css/app.css", 
+            "~/assets/css/app.css",
             "~/assets/css/bootstrap.css"));
 
             bundles.Add(new ScriptBundle("~/assets/vendors").Include(

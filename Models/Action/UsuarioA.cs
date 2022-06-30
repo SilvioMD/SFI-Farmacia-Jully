@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using SFI_Farmacia_Jully.Models.Entity;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
@@ -62,7 +61,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             string sql = "insert TblCatUsuario(Nombres, Apellidos, FechaIngreso, Usuario, Contraseña,IdRol,ClaveRec)" +
                 "values(@Nombres,@Apellidos,GETDATE(),@Usuario,@Contraseña,@Rol,@Clave)";
 
-            
+
             if (Data.Data.QueryInsert(sql, parametros, CommandType.Text, Conexion) > 0)
             {
                 return true;

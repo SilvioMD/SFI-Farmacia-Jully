@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using SFI_Farmacia_Jully.Models.Entity;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
@@ -81,7 +81,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             _ = new DataTable();
             DataTable dt = Data.Data.Query(sql, parametros, CommandType.StoredProcedure, Conexion);
             ProductoE p = new ProductoE();
-            
+
             if (dt.Rows.Count > 0)
             {
                 //llamar la entidad usuario; que contiene los campos de la base de datos
@@ -97,7 +97,8 @@ namespace SFI_Farmacia_Jully.Models.Action
                 return p;
 
             }
-            else {
+            else
+            {
 
                 return p;
             }
@@ -110,7 +111,7 @@ namespace SFI_Farmacia_Jully.Models.Action
             //se guarda la cedena de conexion con la base de datos 
             string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            
+
             //agregar los comandos
             List<SqlParameter> parametros = new List<SqlParameter>
             {

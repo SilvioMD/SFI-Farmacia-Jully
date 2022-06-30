@@ -21,7 +21,7 @@ namespace SFI_Farmacia_Jully.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            
+
 
         }
 
@@ -68,10 +68,10 @@ namespace SFI_Farmacia_Jully.Controllers
             catch (System.Exception)
             {
                 return Json(new { result = "Problema" }, JsonRequestBehavior.AllowGet);
-                
-                
+
+
             }
-           
+
         }
 
     }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Text;
-using ClosedXML.Excel;
-using System.IO;
+﻿using ClosedXML.Excel;
 using SFI_Farmacia_Jully.Models.Action;
 using SFI_Farmacia_Jully.Models.Entity;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
 {
@@ -24,7 +21,7 @@ namespace SFI_Farmacia_Jully.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            
+
         }
 
         public ActionResult RepVentas()
@@ -52,23 +49,23 @@ namespace SFI_Farmacia_Jully.Controllers
                 List<CompraE> Compras = ReportesA.ReporteGeneralCompras(Convert.ToDateTime(fechainicio), Convert.ToDateTime(fechafin));
 
                 //Generamos la cabecera
-                
-                worksheet.Cell(2,2).Value = "Compras entre: ";
+
+                worksheet.Cell(2, 2).Value = "Compras entre: ";
                 worksheet.Cell(2, 3).Value = fechainicio + " hasta ";
                 worksheet.Cell(2, 4).Value = fechafin;
-                
+
 
                 //-----------Genero la tabla de colores-----------
                 int fila = 5;
                 //cabecera de las tablas
-                worksheet.Cell(fila -1, 2).Value = "NoFactura";
+                worksheet.Cell(fila - 1, 2).Value = "NoFactura";
                 worksheet.Cell(fila - 1, 3).Value = "Proveedor";
                 worksheet.Cell(fila - 1, 4).Value = "Total";
                 worksheet.Cell(fila - 1, 5).Value = "Fecha";
-                
+
 
                 //LLenado de la tabla
-                for (int nRow = 0;nRow <= Compras.Count - 1;nRow++)
+                for (int nRow = 0; nRow <= Compras.Count - 1; nRow++)
                 {
                     worksheet.Cell(fila, 2).Value = Compras[nRow].NoFactura;
                     worksheet.Cell(fila, 3).Value = Compras[nRow].Proveedor;
@@ -90,7 +87,7 @@ namespace SFI_Farmacia_Jully.Controllers
                 var rangotitulo = worksheet.Range("B5:E21"); //Seleccionamos un rango
                 rangotitulo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; //Alineamos horizontalmente
                 rangotitulo.Style.Font.FontSize = 10; //Indicamos el tamaño de la fuente
-                
+
                 //formato del titulo
                 var encabezado = worksheet.Range("B2:D2");
                 encabezado.Style.Font.FontSize = 14;
@@ -105,7 +102,7 @@ namespace SFI_Farmacia_Jully.Controllers
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte Compra" + DateTime.Now.ToString() + ".xlsx");
                 }
             }
-            
+
 
         }
 
@@ -115,15 +112,15 @@ namespace SFI_Farmacia_Jully.Controllers
 
             using (XLWorkbook libro = new XLWorkbook())
             {
-                
+
                 var hoja = libro.Worksheets.Add(ReportesA.ReporteGeneralVentas(Convert.ToDateTime(fechainicio), Convert.ToDateTime(fechafin)));
 
-                
+
                 hoja.ColumnsUsed().AdjustToContents();
 
                 using (MemoryStream stream = new MemoryStream())
                 {
-                    
+
                     libro.SaveAs(stream);
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte Venta" + DateTime.Now.ToString() + ".xlsx");
                 }

@@ -1,8 +1,8 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {
@@ -39,7 +39,7 @@ namespace SFI_Farmacia_Jully.Models.Action
 
         }
 
-        public static bool InsertDetalleCompra(string NoFactura, int Proveedor, int IdProducto, DateTime Vencimiento, decimal Precio, decimal CambioPrecio,int Cantidad)
+        public static bool InsertDetalleCompra(string NoFactura, int Proveedor, int IdProducto, DateTime Vencimiento, decimal Precio, decimal CambioPrecio, int Cantidad)
         {
 
             //se guarda la cedena de conexion con la base de datos 

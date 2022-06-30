@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SFI_Farmacia_Jully.Models.Entity
 {
@@ -22,6 +19,6 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public decimal Precio { get; set; }
         public string FechaVenc { get; set; }
         //extras
-        public string Proveedor{ get; set; }
+        public string Proveedor { get; set; }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SFI_Farmacia_Jully.Models.Entity
 {
@@ -18,6 +15,6 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public int Sexo { get; set; }
         public string Celular { get; set; }
         public DateTime FechaIngreso { get; set; }
-        
+
     }
 }

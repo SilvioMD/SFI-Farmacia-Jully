@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Action;
+using System;
 using System.Web.Mvc;
-using SFI_Farmacia_Jully.Models.Action;
 
 
 namespace SFI_Farmacia_Jully.Controllers
@@ -20,14 +20,14 @@ namespace SFI_Farmacia_Jully.Controllers
 
                 ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
                 return View();
-                
+
             }
             else
             {
                 return RedirectToAction("Login", "Auth");
             }
 
-            
+
 
         }
 

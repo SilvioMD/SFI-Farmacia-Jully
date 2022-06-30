@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SFI_Farmacia_Jully.Models.Entity;
+using System;
 using System.Collections.Generic;
-using SFI_Farmacia_Jully.Models.Entity;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace SFI_Farmacia_Jully.Models.Action
 {

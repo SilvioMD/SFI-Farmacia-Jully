@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using SFI_Farmacia_Jully.Models.Action;
+﻿using SFI_Farmacia_Jully.Models.Action;
 using SFI_Farmacia_Jully.Models.Entity;
+using System.Web.Mvc;
 
 namespace SFI_Farmacia_Jully.Controllers
 {
