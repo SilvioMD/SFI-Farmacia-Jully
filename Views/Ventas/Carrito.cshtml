@@ -5,6 +5,7 @@
 
 <body>
 
+   
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
@@ -17,18 +18,160 @@
                 <div class="pcoded-wrapper">
 
                     @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
                             <div class="main-body">
-                                <div class="page-wrapper">
+                              
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="txt-primary">Factura</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                        
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- task, page, download counter  start -->
+                                                <div class="row">
 
-                                    <br />
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <h5 class="form-label" for="registro-docentes">
+                                                                <strong>Cajero: </strong> @ViewBag.NombreUsuario<br />
+
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <h5 class="form-label" for="registro-docentes"><strong>No. Factura:  </strong><br /></h5><br />
+                                                            <h6 class="form-label"><strong id="NoFactura">@ViewBag.NoFactura</strong></h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Tipo de pago</strong></label>
+                                                            <select class="form-control" name="select-cargo" id="select-pago" required>
+                                                                <option value="1">Efectivo</option>
+                                                                <option value="2">Tarjeta de credito/debito</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="card-body">
+                                                    <!--tabla para informacion de cursos -->
+                                                    <div class="table-responsive table  mt-2" id="tabladetalle" role="grid">
+
+                                                        <table class="table my-0 table-bordered table-striped mb-0" id="infodetalle">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Codigo</th>
+                                                                    <th>Descripción</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Valor</th>
+                                                                    <th>Remover</th>
+                                                                </tr>
+                                                            </thead>
+                                                           <tbody>
+                                                               <tr></tr>
+                                                           </tbody>
+
+                                                        </table>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <br />
+
+                                                <form>
+
+                                                    <div class="row">
+
+                                                        <div class="col">
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+                                                            
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Total </label>
+                                                            <input class="form-control" id="total-ventas" name="pnombre-docente" value="0" required />
+
+                                                        </div>
+
+                                                        <div class="col">
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col">
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+
+                                                        </div>
+                                                        <div class="col">
+                                                           
+                                                        </div>
+
+                                                        <div class="col">
+
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar" data-dismiss="modal">
+                                                        Efectúar
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="page-wrapper">
 
                                     <div class="modal-content">
                                         <div class="modal-header">
 
                                             <h5 class="text-primary m-0 fw-bold">Seleccionar Producto</h5>
-
+                                            
                                         </div>
                                         <div class="modal-body">
                                             <form id="form-producto">
@@ -76,8 +219,11 @@
                                                 </div>
 
                                                 <div class="mb-3">
-
-                                                    <button class="btn btn-primary" type="button" id="btn-agregar-producto">Agregar </button>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-round bg-c-blue feather icon-shopping-cart" data-toggle="modal" data-target="#exampleModal">
+                                                        Carrito
+                                                    </button>
+                                                    <button class="btn btn-primary btn-round feather icon-plus" type="button" id="btn-agregar-producto">Agregar </button>
 
                                                 </div>
 
@@ -85,13 +231,13 @@
                                             <br />
 
                                             <div class="card-shadow mb-auto">
-                                                
+
                                                 <div class="card-body">
 
                                                     <!--tabla para informacion de cursos -->
                                                     <div class="table-responsive table mt-2" id="tblbuscar" role="grid">
 
-                                                        <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+                                                        <table class="table my-0 text-center display nowrap table-bordered table-striped" id="InfoProducto" style="width:100%">
 
                                                             <thead class="align-center">
 
@@ -107,30 +253,30 @@
                                                                     <th>AccionFarmacologica</th>
                                                                     <th>Laboratorio</th>
                                                                 </tr>
-
+                                                                
                                                             </thead>
 
                                                             <tbody>
                                                                 @foreach (var datos in Model)
                                                                 {
-                                                                <tr>
-                                                                    <td>@datos.IdMedicamento</td>
-                                                                    <td>@datos.Codigo</td>
-                                                                    <td>@datos.Nombre</td>
-                                                                    <td>@datos.UnidadMedida</td>
-                                                                    <td>@datos.Presentacion</td>
-                                                                    <td>@datos.Precio</td>
-                                                                    <td>@datos.CantidadDisponible</td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
-                                                                            <i class="feather icon-edit-1 text-white"></i>
+                                                                    <tr>
+                                                                        <td>@datos.IdMedicamento</td>
+                                                                        <td>@datos.Codigo</td>
+                                                                        <td>@datos.Nombre</td>
+                                                                        <td>@datos.UnidadMedida</td>
+                                                                        <td>@datos.Presentacion</td>
+                                                                        <td>@datos.Precio</td>
+                                                                        <td>@datos.CantidadDisponible</td>
+                                                                        <td>
+                                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                                <i class="feather icon-edit-1 text-white"></i>
 
-                                                                        </a>
+                                                                            </a>
 
-                                                                    </td>
-                                                                    <td>@datos.AccionFarmacologica</td>
-                                                                    <td>@datos.Laboratorio</td>
-                                                                </tr>
+                                                                        </td>
+                                                                        <td>@datos.AccionFarmacologica</td>
+                                                                        <td>@datos.Laboratorio</td>
+                                                                    </tr>
                                                                 }
 
                                                             </tbody>
@@ -143,151 +289,17 @@
                                             </div>
 
                                         </div>
-                                        
 
-                                </div>
-
-                                <br />
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h6 class="text-primary fw-bold m-0">Factura</h6>
 
                                     </div>
-                                    <div class="modal-body">
 
-                                        <div class="page-body">
-                                            <!-- task, page, download counter  start -->
-                                            <div class="row">
+                                    <br />
+                                   
 
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="registro-docentes">
-                                                            <strong>Cajero: </strong> nombres y apellido del usuario<br />
-
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
 
 
-                                            <div class="row">
-
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="registro-docentes"><strong>No. Factura:  </strong><br /></label><br />
-                                                        <h3 class="form-label"><strong id="NoFactura">@ViewBag.NoFactura</strong></h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="registro-docentes"><strong>Tipo de pago</strong></label>
-                                                        <select class="form-control" name="select-cargo" id="select-pago" required>
-                                                            <option value="1">Efectivo</option>
-                                                            <option value="2">Tarjeta de credito/debito</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="card-shadow mb-5">
-                                                
-                                                <div class="card-body">
-                                                    <!--tabla para informacion de cursos -->
-                                                    <div class="table-responsive table mt-2" id="tabladetalle" role="grid">
-
-                                                        <table class="table my-0" id="infodetalle">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Codigo</th>
-                                                                    <th>Descripción</th>
-                                                                    <th>Precio</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Valor</th>
-                                                                    <th>Aciones</th>
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody>
-                                                            </tbody>
-
-                                                        </table>
-
-
-
-                                                    </div>
-                                                </div>
-
-                                                <form>
-
-                                                    <div class="row">
-
-                                                        <div class="col">
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-                                                            <label>Total </label>
-                                                            <input class="form-control" id="total-ventas" name="pnombre-docente" value="0" required />
-
-                                                        </div>
-
-                                                        <div class="col">
-
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-
-                                                        <div class="col">
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-                                                            <div>
-                                                                <br />
-                                                                <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar">
-                                                                    <i class="fas fa-shopping-bag"></i>Efectúar Venta
-                                                                </a>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col">
-
-                                                        </div>
-
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                            <!-- footer -->
-                                            @RenderPage("~/Views/Shared/Layout_footer.cshtml")
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -295,7 +307,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
 </body>
@@ -315,6 +326,13 @@
 
             });
 
+            $(document).ready(function () {
+                $('#infodetalle').DataTable({
+                    responsive: true
+                });
+
+            });
+
             $(".efectuar").click(function () {
 
                 console.log("click en guardar");
@@ -324,14 +342,13 @@
                 let IdTipoPago = document.getElementById('select-pago');
 
                 console.log(filas.length);
-                if (filas.length > 1) {
+                if (filas.length > 2) {
 
-                    console.log();
-                    var i = 1;
+                    var i;
 
                     let productos = [];
 
-                    for (i = 1; i < filas.length; i++) {
+                    for (i = 2; i < filas.length; i++) {
 
                         let producto = {
                             "NoFactura": NoFact.innerHTML,
@@ -366,7 +383,7 @@
                             }
                             else if (response.result == 'Redirect') {
                                 
-                                //alert("Venta agregada");
+                               
                                 swal(
                                     'exito',
                                     'Compra agregadas',
@@ -383,7 +400,7 @@
                 } else {
                     swal(
                         'error',
-                        'agrege el codigo de la factura',
+                        'agrege productos a la factura',
                         'error'
                     );
                 }

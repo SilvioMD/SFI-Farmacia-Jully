@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Perfil";
+}
+
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="text-primary m-0 fw-bold">Perfil</h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="page-body">
+                                                <!-- task, page, download counter  start -->
+                                                <div class="card-body">
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>

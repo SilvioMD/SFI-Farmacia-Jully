@@ -1,0 +1,33 @@
+/*---*/
+#btn-modalpers:checked ~ .modal-pers {
+	opacity: 1;
+	visibility: visible;
+}
+
+
+#btn-modalpers:checked ~ .modal-pers .contenedor-pers {
+	transform: translateY(0%);
+}
+
+.contenedor-pers header {
+	padding: 10px;
+	background: #db8046;
+	color: #fff;
+}
+
+#btn-modalpers {
+	display: none;
+}
+
+.lbl-modal {
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 50%;
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.4);
+	transition: all 500ms ease;
+}
+

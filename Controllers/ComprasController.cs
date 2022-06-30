@@ -26,6 +26,23 @@ namespace SFI_Farmacia_Jully.Controllers
             
         }
 
+        public ActionResult VerCompras()
+        {
+            if (Session["UsuarioLogeado"] != null)
+            {
+
+                ViewBag.NombreUsuario = Session["UsuarioLogeado"].ToString();
+                return View(ReportesA.MostrarCompras());
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+
+        }
+
         [HttpPost]
         public ActionResult GuardarCompra(List<CompraE> Productos)
         {

@@ -1,7 +1,1 @@
 ﻿
-var proveedor = {
-
-    get: function () {
-       
-    }
-}

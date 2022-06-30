@@ -1,0 +1,115 @@
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.VentaE>
+@{
+    ViewBag.Title = "VerVentas";
+}
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+
+                    <div class="pcoded-content">
+
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+
+                                <div class="page-wrapper">
+
+                                    <div class="modal-header">
+                                        <h5 class="text-primary fw-bold m-0">Ventas</h5>
+
+                                    </div>
+                                    <br />
+
+                                    <div class="modal-content">
+                                        <div class="card-shadow mb-auto">
+
+                                            <div class="card-body">
+
+                                                <!--tabla para informacion de cursos -->
+                                                <div class="table-responsive table mt-2" id="tblbuscar" role="grid">
+
+                                                    <table class="table my-0 text-center display nowrap" id="TblVentas" style="width:100%">
+
+                                                        <thead class="left">
+
+                                                            <tr>
+                                                                <th>No. Factura</th>
+                                                                <th>Forma de Pago</th>
+                                                                <th>Total</th>
+                                                                <th>Fecha</th>
+
+                                                            </tr>
+
+                                                        </thead>
+
+                                                        <tbody>
+                                                            @foreach (var datos in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@datos.NoFactura</td>
+                                                                    <td>@datos.FormaPago</td>
+                                                                    <td>@datos.Total</td>
+                                                                    <td>@datos.Fecha</td>
+                                                                </tr>
+                                                            }
+
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(document).ready(function () {
+
+                $('#TblVentas').DataTable({
+                    responsive: true
+                });
+
+            });
+
+
+        });
+
+    </script>
+}

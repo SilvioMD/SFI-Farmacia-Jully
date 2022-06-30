@@ -22,6 +22,115 @@
 
                         <div class="pcoded-inner-content">
                             <div class="main-body">
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                        <div class="modal-content ">
+                                            <div class="modal-header">
+                                                <h5 class="txt-primary">Factura</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
+                                                            <input class="form-control" id="NoFact" name="pnombre-docente" value="" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
+                                                            <select class="form-control" name="select" id="select-proveedor" required>
+                                                                <option value="1">Ramos</option>
+                                                                <option value="2">Solka</option>
+                                                                <option value="3">Bayer</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="card-shadow mb-auto">
+
+
+                                                    <div class="card-body">
+                                                        <!--tabla para informacion de cursos -->
+                                                        <div class="table-responsive table mt-2" role="grid">
+                                                            <table class="table my-0" id="tabladetalle">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Codigo</th>
+                                                                        <th>Descripción</th>
+                                                                        <th>Precio</th>
+                                                                        <th>Cantidad</th>
+                                                                        <th>Valor</th>
+                                                                        <th>Retirar</th>
+                                                                        <th style="visibility:collapse; display:none;">Vencimiento</th>
+                                                                        <th style="visibility:collapse; display:none;">Cambio Precio</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <form>
+
+                                                        <div class="row">
+
+                                                            <div class="col">
+                                                            </div>
+                                                            <div class="col">
+
+                                                            </div>
+                                                            <div class="col">
+
+                                                            </div>
+                                                            <div class="col">
+
+                                                            </div>
+                                                            <div class="col">
+
+                                                            </div>
+                                                            <div class="col">
+                                                                <label>Total </label>
+                                                                <input class="form-control" id="total-compra" name="pnombre-docente" value="0" required />
+
+                                                            </div>
+
+                                                            <div class="col">
+
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar"  data-dismiss="modal">
+                                                        Guardar Compra
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="page-wrapper">
 
                                     <br />
@@ -33,7 +142,7 @@
 
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            <form id="form-productocompra">
 
                                                 <div class="row">
 
@@ -85,7 +194,11 @@
 
                                                 <div class="mb-3">
 
-                                                    <button type="button" class="btn btn-primary" name="btn-registro-docente" id="btn-agregar-producto">Agregar </button>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-round bg-c-blue feather icon-shopping-cart" data-toggle="modal" data-target="#exampleModal">
+                                                        Compras
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary btn-round feather icon-plus" name="btn-registro" id="btn-agregar-producto">Agregar </button>
 
                                                 </div>
 
@@ -121,23 +234,23 @@
                                                             <tbody>
                                                                 @foreach (var datos in Model)
                                                                 {
-                                                                <tr>
-                                                                    <td>@datos.IdMedicamento</td>
-                                                                    <td>@datos.Codigo</td>
-                                                                    <td>@datos.Nombre</td>
-                                                                    <td>@datos.UnidadMedida</td>
-                                                                    <td>@datos.Presentacion</td>
-                                                                    <td>@datos.Precio</td>
-                                                                    <td>@datos.CantidadDisponible</td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
-                                                                            <i class="feather icon-edit-1 text-white"></i>
+                                                                    <tr>
+                                                                        <td>@datos.IdMedicamento</td>
+                                                                        <td>@datos.Codigo</td>
+                                                                        <td>@datos.Nombre</td>
+                                                                        <td>@datos.UnidadMedida</td>
+                                                                        <td>@datos.Presentacion</td>
+                                                                        <td>@datos.Precio</td>
+                                                                        <td>@datos.CantidadDisponible</td>
+                                                                        <td>
+                                                                            <a class="btn btn-primary d-none d-sm-inline-block text-white btnAgregar" data-toggle="modal" data-target="#modal-proveedor" data-index='"+datos.Idproveedor+"'>
+                                                                                <i class="feather icon-edit-1 text-white"></i>
 
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>@datos.Laboratorio</td>
-                                                                    <td>@datos.AccionFarmacologica</td>
-                                                                </tr>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>@datos.Laboratorio</td>
+                                                                        <td>@datos.AccionFarmacologica</td>
+                                                                    </tr>
                                                                 }
 
                                                             </tbody>
@@ -157,121 +270,7 @@
                                             <h5 class="text-primary fw-bold m-0">Factura de compra</h5>
 
                                         </div>
-                                        <div class="modal-body">
-
-                                            <div class="row">
-
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="registro-docentes"><strong>No. Factura</strong><br /></label>
-                                                        <input class="form-control" id="NoFact" name="pnombre-docente" value="" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="registro-docentes"><strong>Proveedor</strong></label>
-                                                        <select class="form-control" name="select" id="select-proveedor" required>
-                                                            <option value="1">Ramos</option>
-                                                            <option value="2">Solka</option>
-                                                            <option value="3">Bayer</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="card-shadow mb-auto">
-
-
-                                                <div class="card-body">
-                                                    <!--tabla para informacion de cursos -->
-                                                    <div class="table-responsive table mt-2" role="grid">
-                                                        <table class="table my-0" id="tabladetalle">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Codigo</th>
-                                                                    <th>Descripción</th>
-                                                                    <th>Precio</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Valor</th>
-                                                                    <th>Retirar</th>
-                                                                    <th style="visibility:collapse; display:none;">Vencimiento</th>
-                                                                    <th style="visibility:collapse; display:none;">Cambio Precio</th>
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody>
-                                                            </tbody>
-
-                                                        </table>
-
-                                                    </div>
-                                                </div>
-
-                                                <form>
-
-                                                    <div class="row">
-
-                                                        <div class="col">
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-                                                            <label>Total </label>
-                                                            <input class="form-control" id="total-compra" name="pnombre-docente" value="0" required />
-
-                                                        </div>
-
-                                                        <div class="col">
-
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-
-                                                        <div class="col">
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-
-                                                        </div>
-                                                        <div class="col">
-                                                            <div>
-                                                                <br />
-                                                                <a class="btn btn-primary d-none d-sm-inline-block text-white efectuar" role="button">
-                                                                    <i class="fas fa-shopping-bag"></i>Guardar Compra
-                                                                </a>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col">
-
-                                                        </div>
-
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
 
 
@@ -354,7 +353,7 @@
                         $("#total-compra").val(totalfinal);
                         //insertar los datos a la tabla
                         Insertar(codigo, nombre, precio, cantidad, cambioprecio, vencimiento);
-
+                        Limpiar();
                     }
 
                 } else {
@@ -419,16 +418,15 @@
                                         'Resultado incorrecto',
                                         'error'
                                     )
-                                    // alert("Resultado incorrecto");
+                                  
                                 }
                                 else if (response.result == 'Redirect') {
-                                    //redirecting to main page from here for the time being.
-                                    swal(
+                                   swal(
                                         'exito',
                                         'Compra agregadas',
                                         'success'
                                     )
-                                    //alert("Venta agregada");
+                                   
                                     window.location = response.url;
                                 }
                             },
@@ -443,7 +441,7 @@
                             'no hay productos agregados',
                             'error'
                         )
-                        //alert("no hay productos agregados");
+                       
                     }
                 } else {
                     swal(
@@ -451,7 +449,7 @@
                         'agrege el codigo de la factura',
                         'error'
                     )
-                    // alert("agrege el codigo de la factura");
+                    
                 }
 
             });
@@ -487,6 +485,7 @@
 
             col7.className = 'visibilidad';
             col8.className = 'visibilidad';
+
         }
 
         //eventos de la tabla detalle de venta
@@ -506,7 +505,7 @@
         }
 
         function Limpiar() {
-            const form = document.getElementById("form-producto");
+            const form = document.getElementById("form-productocompra");
             form.reset();
         }
 

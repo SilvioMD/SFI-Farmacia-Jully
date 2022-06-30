@@ -21,144 +21,166 @@
                             <div class="main-body">
                                 <div class="page-wrapper">
 
-                                    <div class="page-body">
-                                        <!-- task, page, download counter  start -->
-                                        <div class="card-body">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="text-primary m-0 fw-bold">Registrar</h5>
 
-                                            <form id="form-producto">
-                                                <div class="row">
-
-                                                    <div class="col">
-                                                    </div>
-                                                    <div class="col">
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-
-                                                            <label class="form-label" for="registro-docentes"><strong>Tipo de producto</strong></label>
-                                                            <select class="form-control" name="Tipo" id="tipo-producto" required>
-                                                                <option value="1">Medicamento</option>
-                                                                <option value="2">Miscelaneos</option>
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="card-header py-3">
-                                                    <p class="text-primary m-0 fw-bold">Datos de producto</p>
-                                                </div>
-                                                <div class="row">
-
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Nombre del producto</strong><br /></label>
-                                                            <input class="form-control" id="nombre" name="NombreProducto" required />
-                                                            <input type="hidden" class="form-control" id="idmedicamento"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Unidad de Medida</strong><br /></label>
-                                                            <input class="form-control" id="unidad_medida" name="UnidadMedida" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Descripcion</strong></label>
-                                                            <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="4"></textarea>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Precio </strong><br /></label>
-                                                            <input class="form-control" id="precio" name="Precio" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad</strong><br /></label>
-                                                            <input class="form-control" id="cantidad" name="CantDisp" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Cantidad Minima</strong><br /></label>
-                                                            <input class="form-control" id="cantidadminima" name="CantMinima" required />
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Laboratorio</strong></label>
-                                                            @Html.DropDownList("CboLaboratorio", null, "Selecciona", new { @class = "form-control", @name = "CboLaboratorio", @id = "cbolab" })
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Accion Farmacologica</strong></label>
-                                                            @Html.DropDownList("CboAccionFarm", null, "Selecciona", new { @class = "form-control", @name = "CboAccionFarm", @id = "cboAF" })
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="registro-docentes"><strong>Presentación</strong></label>
-                                                            @Html.DropDownList("CboPresentacion", null, "Selecciona", new { @class = "form-control", @name = "CboPresentacion", @id = "cbopresent" })
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" name="btn-registro-docente" id="btn-registro-docente" onclick="Guardar()">Agregar producto</button></div>
-
-                                            </form>
                                         </div>
+                                        <div class="modal-body">
+                                            <div class="page-body">
+                                                <!-- task, page, download counter  start -->
+                                                <div class="card-body">
 
-                                        <div class="card-shadow mb-5">
-                                            <div class="card-header py-3">
-                                                <h6 class="text-primary fw-bold m-0">Lista de productos</h6>
-                                            </div>
-                                            <div class="card-body">
+                                                    <form id="form-producto">
+                                                        <div class="row">
+
+                                                            <div class="col">
+                                                            </div>
+                                                            <div class="col">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+
+                                                                    <label class="form-label" for="registro-docentes"><strong>Tipo de producto</strong></label>
+                                                                    <select class="form-control" name="Tipo" id="tipo-producto" required>
+                                                                        <option value="1">Medicamento</option>
+                                                                        <option value="2">Miscelaneos</option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Nombre del producto</strong><br /></label>
+                                                                    <input class="form-control" id="nombre" name="NombreProducto" required />
+                                                                    <input type="hidden" class="form-control" id="idmedicamento" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Unidad de Medida</strong><br /></label>
+                                                                    <input class="form-control" id="unidad_medida" name="UnidadMedida" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Descripcion</strong></label>
+                                                                    <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="4"></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Precio </strong><br /></label>
+                                                                    <input class="form-control" id="precio" name="Precio" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Cantidad</strong><br /></label>
+                                                                    <input class="form-control" id="cantidad" name="CantDisp" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Cantidad Minima</strong><br /></label>
+                                                                    <input class="form-control" id="cantidadminima" name="CantMinima" required />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Laboratorio</strong></label>
+                                                                    @Html.DropDownList("CboLaboratorio", null, "Selecciona", new { @class = "form-control", @name = "CboLaboratorio", @id = "cbolab" })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Accion Farmacologica</strong></label>
+                                                                    @Html.DropDownList("CboAccionFarm", null, "Selecciona", new { @class = "form-control", @name = "CboAccionFarm", @id = "cboAF" })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="registro-docentes"><strong>Presentación</strong></label>
+                                                                    @Html.DropDownList("CboPresentacion", null, "Selecciona", new { @class = "form-control", @name = "CboPresentacion", @id = "cbopresent" })
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
 
-                                                <!--tabla para informacion de cursos -->
-                                                <div class="table-responsive table mt-1" id="tabla" role="grid">
+                                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" name="btn-registro-docente" id="btn-registro-docente" onclick="Guardar()">Agregar producto</button></div>
 
-
-                                                    <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
-
-                                                        <thead class="align-center">
-
-                                                            <tr>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre del Producto</th>
-                                                                <th>Unidad de Medida</th>
-                                                                <th>Presentacion</th>
-                                                                <th>Laboratorio</th>
-                                                                <th>Acciones</th>
-                                                                <th>Accion Farmacologica</th>
-                                                            </tr>
-
-                                                        </thead>
-
-
-                                                    </table>
-
-
+                                                    </form>
                                                 </div>
+
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <br />
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <h6 class="text-primary fw-bold m-0">Lista de productos</h6>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="page-body">
+                                                <!-- task, page, download counter  start -->
+                                                <div class="card-body">
+                                                    <div class="card-shadow mb-5">
+                                                       
+                                                        <div class="card-body">
+
+
+                                                            <!--tabla para informacion de cursos -->
+                                                            <div class="table-responsive table mt-1" id="tabla" role="grid">
+
+
+                                                                <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+
+                                                                    <thead class="align-center">
+
+                                                                        <tr>
+                                                                            <th>Codigo</th>
+                                                                            <th>Nombre del Producto</th>
+                                                                            <th>Unidad de Medida</th>
+                                                                            <th>Presentacion</th>
+                                                                            <th>Laboratorio</th>
+                                                                            <th>Acciones</th>
+                                                                            <th>Accion Farmacologica</th>
+                                                                        </tr>
+
+                                                                    </thead>
+
+
+                                                                </table>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
 
                                     </div>
 

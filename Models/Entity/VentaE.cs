@@ -10,6 +10,7 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public  int NoFactura { get; set; }
         public int IdCliente { get; set; }
         public int TipoPago { get; set; }
+        
         public int IdEmpleado { get; set; }
         public DateTime Fecha { get; set; }
 
@@ -18,6 +19,7 @@ namespace SFI_Farmacia_Jully.Models.Entity
         public int IdProducto { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
-
+        public decimal Total { get; set; }
+        public string FormaPago { get; set; }
     }
 }
