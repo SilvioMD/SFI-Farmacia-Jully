@@ -1335,6 +1335,7 @@
     <Content Include="Views\Administracion\Perfil.cshtml" />
     <Content Include="Views\Compras\VerCompras.cshtml" />
     <Content Include="Views\Ventas\VerVentas.cshtml" />
+    <Content Include="Views\Reportes\RepControlados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

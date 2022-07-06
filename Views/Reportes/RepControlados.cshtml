@@ -1,0 +1,135 @@
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProductoE>
+@{
+    ViewBag.Title = "RepControlados";
+}
+
+
+<body>
+
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @RenderPage("~/Views/Shared/Layout_header.cshtml")
+
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @RenderPage("~/Views/Shared/Layout_aside.cshtml")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <!-- task, page, download counter  start -->
+
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+
+                                                <div class="card shadow-sm">
+                                                    <div class="card-header">
+                                                        <h5>Descarga excel para Ministerio de Salud.</h5>
+                                                    </div>
+                                                    <div class="card-body">
+
+                                                        <form action="@Url.Action("ExportarControlados","Reportes")" method="post">
+                                                            <div class="form-row align-items-end">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="form-text">Fecha Inicio</label>
+                                                                    <input type="date" class="form-control" name="fechainicio" />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="form-text">Fecha Fin</label>
+                                                                    <input type="date" class="form-control" name="fechafin" />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn btn-success btn-block" type="submit">Descargar</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <br />
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+
+                                                                <h6 class="text-primary fw-bold m-0">Visualizacion del reporte</h6>
+
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="page-body">
+                                                                    <!-- task, page, download counter  start -->
+                                                                    <div class="card-body">
+                                                                        <div class="card-shadow mb-5">
+
+                                                                            <div class="card-body">
+
+                                                                                <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+
+                                                                                    <thead class="align-center">
+
+                                                                                        <tr>
+                                                                                            <th>NOMBRE GENÉRICO</th>
+                                                                                            <th>FORMA FARM.</th>
+                                                                                            <th>LABORATORIO</th>
+                                                                                            <th>ENTRADAS</th>
+                                                                                            <th>SALIDAS</th>
+                                                                                            <th>EXISTENCIA ACTUAL</th>
+                                                                                        </tr>
+
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var datos in Model)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@datos.Nombre</td>
+                                                                                                <td>@datos.Presentacion </td>
+                                                                                                <td>@datos.Laboratorio</td>
+                                                                                                <td>@datos.Entrada</td>
+                                                                                                <td>@datos.Salida</td>
+                                                                                                <td>@datos.CantidadDisponible</td>
+                                                                                            </tr>
+
+                                                                                        }
+                                                                                    </tbody>
+
+                                                                                </table>
+
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>

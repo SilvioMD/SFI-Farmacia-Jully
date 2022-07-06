@@ -25,6 +25,8 @@
         public int CantidadDisponible { get; set; }
         public int CantidadMinima { get; set; }
 
-
+        //medicamento controlados
+        public int Entrada { get; set; }
+        public int Salida { get; set; }
     }
 }

@@ -24,7 +24,6 @@ namespace SFI_Farmacia_Jully.Models.Action
             //cadena de la consulta
             string sql = "SP_Productos";
 
-
             //crear data table para almacenar los datos
             _ = new DataTable();
             DataTable dt = Data.Data.Query(sql, parametros, CommandType.StoredProcedure, Conexion);
@@ -33,7 +32,6 @@ namespace SFI_Farmacia_Jully.Models.Action
 
             if (dt.Rows.Count > 0)
             {
-
                 for (var i = 0; i < dt.Rows.Count; i++)
                 {
 
@@ -53,7 +51,6 @@ namespace SFI_Farmacia_Jully.Models.Action
 
                     producto.Add(p);
                 }
-
 
             }
 
