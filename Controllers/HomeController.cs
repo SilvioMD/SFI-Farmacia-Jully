@@ -8,6 +8,11 @@ namespace SFI_Farmacia_Jully.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        public ActionResult Home()
+        {
+            return View(ProductoA.Listar());
+        }
+
         public ActionResult Dashboard()
         {
 

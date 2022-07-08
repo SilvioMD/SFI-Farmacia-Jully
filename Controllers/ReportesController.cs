@@ -41,13 +41,29 @@ namespace SFI_Farmacia_Jully.Controllers
         {
             if (Session["UsuarioLogeado"] != null)
             {
-                return View(ReportesA.ReporteControlados());
+                return View();
             }
             else
             {
                 return RedirectToAction("Login", "Auth");
             }
 
+        }
+
+        public JsonResult ListarRepFecha(string Inicio, string Fin)
+        {
+            if((Inicio is null && Fin is null) || (Inicio == "" && Fin == ""))
+            {
+                return Json(new { data = ReportesA.ReporteControlados() }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    data = ReportesA.ReporteControlados(Convert.ToDateTime(Inicio), Convert.ToDateTime(Fin))
+                }, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         [HttpPost]

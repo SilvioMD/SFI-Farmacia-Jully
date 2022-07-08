@@ -30,7 +30,7 @@
                                         <button class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-cliente">
                                             Registrar Cliente
                                         </button>
-                                        <br />
+
 
                                         <div class="modal fade" id="modal-cliente" tabindex="-1">
                                             <div class="modal-dialog bg-white">
@@ -95,9 +95,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
+                                                            <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                                             <button class="btn btn-primary" type="submit" name="btn-registro-docente" id="btn-registro-docente">Guardar </button>
 
-                                                            <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                                         </div>
 
                                                     </form>
@@ -107,64 +107,66 @@
                                         </div>
 
 
-                                        <div class="card-shadow mb-5">
-                                            <div class="card-header py-3">
-                                                <h6 class="text-primary fw-bold m-0">Lista de Clientes</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <!--tabla para informacion de cursos -->
-                                                <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
+                                    </div>
+                                    <br />
+                                    <div class="card-shadow mb-5">
 
-                                                    <table class="table my-0" id="infoCliente">
+                                        <div class="card-header py-3">
+                                            <h6 class="text-primary fw-bold m-0">Lista de Clientes</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <!--tabla para informacion de cursos -->
+                                            <div class="table-responsive table mt-2" id="tablaCursos" role="grid">
 
-                                                        <thead>
+                                                <table class="table my-0" id="infoCliente">
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Codigo</th>
+                                                            <th>P.Nombre</th>
+                                                            <th>S.Nombre</th>
+                                                            <th>P.Apellido</th>
+                                                            <th>S.Apellido</th>
+                                                            <th>NoTelefono</th>
+                                                            <th>Direccion</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach (var datos in Model)
+                                                        {
                                                             <tr>
-                                                                <th>Codigo</th>
-                                                                <th>P.Nombre</th>
-                                                                <th>S.Nombre</th>
-                                                                <th>P.Apellido</th>
-                                                                <th>S.Apellido</th>
-                                                                <th>NoTelefono</th>
-                                                                <th>Direccion</th>
-                                                                <th>Acciones</th>
+                                                                <td>@datos.IdCliente</td>
+                                                                <td>@datos.PNombre </td>
+                                                                <td>@datos.Snombre</td>
+                                                                <td>@datos.PApellido</td>
+                                                                <td>@datos.SApellido</td>
+                                                                <td>@datos.Celular</td>
+                                                                <td>@datos.Direccion</td>
+                                                                <td>
+                                                                    <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-cliente">
+                                                                        <i class="feather icon-edit-1 text-white"></i>
+
+                                                                    </a>
+                                                                    <a class="btn bg-warning d-sm-inline-block text-white btn-baja">
+                                                                        <i class="feather icon-trash text-white"></i>
+
+                                                                    </a>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
 
-                                                            @foreach (var datos in Model)
-                                                            {
-                                                                <tr>
-                                                                    <td>@datos.IdCliente</td>
-                                                                    <td>@datos.PNombre </td>
-                                                                    <td>@datos.Snombre</td>
-                                                                    <td>@datos.PApellido</td>
-                                                                    <td>@datos.SApellido</td>
-                                                                    <td>@datos.Celular</td>
-                                                                    <td>@datos.Direccion</td>
-                                                                    <td>
-                                                                        <a class="btn btn-primary d-none d-sm-inline-block text-white btnEditar" data-toggle="modal" data-target="#modal-cliente">
-                                                                            <i class="feather icon-edit-1 text-white"></i>
+                                                        }
+                                                    </tbody>
 
-                                                                        </a>
-                                                                        <a class="btn bg-warning d-sm-inline-block text-white btn-baja">
-                                                                            <i class="feather icon-trash text-white"></i>
+                                                </table>
 
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-
-                                                            }
-                                                        </tbody>
-
-                                                    </table>
-
-                                                </div>
                                             </div>
                                         </div>
-                                        <!-- footer -->
-                                        @RenderPage("~/Views/Shared/Layout_footer.cshtml")
-
                                     </div>
+                                    <!-- footer -->
+                                    @RenderPage("~/Views/Shared/Layout_footer.cshtml")
+
                                 </div>
 
                                

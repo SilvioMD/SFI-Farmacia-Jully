@@ -1,0 +1,137 @@
+﻿@model List<SFI_Farmacia_Jully.Models.Entity.ProductoE>
+@{
+    ViewBag.Title = "Home";
+}
+<div class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+
+            <img src="~/files/assets/images/Logo_fig.png" class="img-circle">
+            <h1 class="text-white">Farma Jully</h1>
+            <p class="text-white">Salud a tu alcance...</p>
+
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="btn button bg-light active">Medicamentos disponibles actualmente</a></li>
+                <li><a href="~/Auth/Login" class="btn bg-light m-0 fw-bold">Iniciar Sesión</a></li>
+
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Introduction -->
+            <section id="intro" class="main">
+                <div class="spotlight">
+
+                    <div class="modal-content">
+                        
+                        <div class="modal-body">
+                            <div class="page-body">
+                                <!-- task, page, download counter  start -->
+                                <div class="card-body">
+                                    <div class="card-shadow mb-5">
+
+                                        <div class="card-body">
+
+
+                                            <!--tabla para informacion de cursos -->
+                                            <div class="table-responsive table mt-1" id="tabla" role="grid">
+
+
+                                                <table class="table my-0 text-center display nowrap" id="InfoProducto" style="width:100%">
+
+                                                    <thead class="align-center">
+
+                                                        <tr>
+                                                            <th>Codigo</th>
+                                                            <th>Nombre del Producto</th>
+                                                            <th>Unidad de Medida</th>
+                                                            <th>Presentacion</th>
+                                                            <th>Laboratorio</th>
+                                                            <th>Accion Farmacologica</th>
+                                                        </tr>
+
+                                                    </thead>
+
+
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <section>
+                <h2 class="text-white">Dirección</h2>
+                <label class="text-white">colonia miguel bonilla del comedor de la UNAN 3c abajo 1/2c al sur M/I casa 227, Managua. </label>
+
+            </section>
+            <section>
+                <h2 class="text-white">Telefono:</h2>
+                <label class="text-white">+505 XXXXXXXX</label>
+                
+            </section>
+        </footer>
+
+    </div>
+
+</div>
+
+
+@section scripts{
+
+    <script src="~/js/Proveedor.jsv=@DateTime.Now.Second.ToString()"></script>
+    <script type="text/javascript">
+        var tabla_persona;
+
+        $(function () {
+
+            $(document).ready(function () {
+
+                tabla_persona = $('#InfoProducto').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("Listar", "Inventario")",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Codigo" },
+                        { "data": "Nombre" },
+                        { "data": "UnidadMedida" },
+                        { "data": "Presentacion" },
+                        { "data": "Laboratorio" },
+                        { "data": "AccionFarmacologica" }
+
+                    ],
+                });
+
+            });
+
+        });
+
+    </script>
+
+}

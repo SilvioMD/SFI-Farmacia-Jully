@@ -201,6 +201,8 @@
     <Content Include="files\assets\css\font-awesome.min.css" />
     <Content Include="files\assets\css\jquery.mCustomScrollbar.css" />
     <Content Include="files\assets\css\linearicons.css" />
+    <Content Include="files\assets\css\main.css" />
+    <Content Include="files\assets\css\noscript.css" />
     <Content Include="files\assets\css\pcoded-horizontal.min.css" />
     <Content Include="files\assets\css\style.css" />
     <Content Include="files\assets\icon\feather\css\feather.css" />
@@ -507,6 +509,9 @@
     <Content Include="files\assets\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="files\assets\js\jquery.mousewheel.min.js" />
     <Content Include="files\assets\js\jquery.quicksearch.js" />
+    <Content Include="files\assets\js\jquery.scrollex.min.js" />
+    <Content Include="files\assets\js\jquery.scrolly.min.js" />
+    <Content Include="files\assets\js\main.js" />
     <Content Include="files\assets\js\menu\box-layout.js" />
     <Content Include="files\assets\js\menu\menu-compact.js" />
     <Content Include="files\assets\js\menu\menu-header-fixed.js" />
@@ -1336,6 +1341,7 @@
     <Content Include="Views\Compras\VerCompras.cshtml" />
     <Content Include="Views\Ventas\VerVentas.cshtml" />
     <Content Include="Views\Reportes\RepControlados.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
